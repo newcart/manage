@@ -120,7 +120,7 @@ class ServiceController extends Controller
     {
         $type = UserType::findOrFail($service->service_id);
 
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
@@ -142,7 +142,7 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, Service $service): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class))
+        if (User::thisUserHasPermission($this->method, $this->class))
         {
             $updatedService = Service::findOrFail($service->service_id)->update($request->validated());
             if ($updatedService) {
@@ -166,7 +166,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $service->delete();
             notify()->success('Kullanıcı tipi başarıyla silindi.', 'Başarılı');
             return redirect()->route('panel.users.service');

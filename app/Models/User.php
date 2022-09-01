@@ -119,10 +119,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function thisUserHasPermission(string $string, string $string1)
-    {
-    }
-
     /**
      * Relationships to types
      *

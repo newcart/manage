@@ -45,7 +45,7 @@ class UserTypeController extends Controller
             'updated_at' => 'Updated At',
         ];
 
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
@@ -64,7 +64,7 @@ class UserTypeController extends Controller
      */
     public function create(): \Illuminate\Contracts\View\View|Factory|RedirectResponse|Application
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar()
@@ -84,7 +84,7 @@ class UserTypeController extends Controller
      */
     public function store(UserTypeRequest $request): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $user_type = UserType::create($request->validated());
 
             if ($user_type) {
@@ -107,7 +107,7 @@ class UserTypeController extends Controller
     {
         $type = UserType::findOrFail($type->type_id);
 
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
@@ -128,7 +128,7 @@ class UserTypeController extends Controller
      */
     public function update(UserTypeRequest $request, UserType $type): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $updatedType = UserType::findOrFail($type->type_id)->update($request->validated());
             if ($updatedType) {
                 notify()->success('Kullanıcı tipi başarıyla güncellendi.', 'Başarılı');
@@ -150,7 +150,7 @@ class UserTypeController extends Controller
      */
     public function destroy(UserType $type): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $type->delete();
             notify()->success('Ürün başarıyla silindi.', 'Başarılı');
             return redirect()->route('panel.users.types');

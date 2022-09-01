@@ -51,7 +51,7 @@ class RoleController extends Controller
             'updated_at' => 'Updated At',
         ];
 
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
@@ -72,7 +72,7 @@ class RoleController extends Controller
      */
     public function create(): Factory|Application|View|RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar()
@@ -92,7 +92,7 @@ class RoleController extends Controller
      */
     public function store(UserRoleRequest $request): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $role = Role::create($request->validated());
             if ($role) {
                 notify()->success('Rol başarıyla oluşturuldu.', 'Başarılı');
@@ -115,7 +115,7 @@ class RoleController extends Controller
      */
     public function update(UserRoleRequest $request, Role $role): RedirectResponse
     {
-        if(User::userHasPermission($this->method, $this->class)) {
+        if(User::thisUserHasPermission($this->method, $this->class)) {
             $updatedRole = Role::findOrFail($role->role_id)->update($request->validated());
             if ($updatedRole) {
                 notify()->success('Rol başarıyla güncellendi.', 'Başarılı');
@@ -137,7 +137,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role): RedirectResponse
     {
-        if(User::userHasPermission($this->method, $this->class)) {
+        if(User::thisUserHasPermission($this->method, $this->class)) {
             $role->delete();
             notify()->success('Rol başarıyla silindi.', 'Başarılı');
             return redirect()->route('panel.users.roles');
