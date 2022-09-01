@@ -1,0 +1,72 @@
+@media (max-width: 1500px) {
+    .general-report {
+        .row {
+            .report-box {
+                .box-body {
+                    font-size: 50px;
+                }
+                .box-footer {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1200px) {
+    header {
+        .btn-expand-collapse {
+            display: none;
+        }
+        .mobile-sidenav {
+            display: block !important;
+            position: absolute;
+            right: 12px;
+        }
+        .desktop-user {
+            display: none;
+        }
+        .logo-section {
+            border: none;
+            .navbar-brand {
+                margin-left: 0;
+                img {
+                    width: 130px;
+                }
+            }
+        }
+        .user-section {
+            padding-right: 45px;
+            .mobile-user {
+                margin-left: 30px;
+            }
+        }
+    }
+
+    .navbar-primary {
+        left: -300px;
+    }
+    .navbar-primary.collapsed {
+        display: block;
+        width: 100%;
+        left: 0;
+        z-index: 123;
+        background: #fff;
+        .navbar-primary-menu {
+            .nav-label {
+                position: relative !important;
+                opacity: 1;
+            }
+        }
+    }
+    .collapsed + .main-content {
+        width: 100%;
+        display: none;
+    }
+    .main-content,
+    #footer {
+        width: 100%;
+        float: none;
+        padding-left: unset;
+    }
+}

@@ -1,0 +1,150 @@
+.general-report {
+    row-gap: 40px;
+    .general-report-header {
+        padding-bottom: 30px;
+        .title-section {
+            display: flex;
+            align-items: center;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 39px;
+            color: #808080;
+        }
+        .date-section {
+            align-items: center;
+            column-gap: 27px;
+            .date-tabs {
+                ul {
+                    display: flex;
+                    padding: 0;
+                    margin: 0;
+                    li {
+                        list-style: none;
+                        padding: 18px 0;
+                        .date-link {
+                            padding: 18px;
+                            width: 99px;
+                            text-align: center;
+                            text-decoration: none;
+                            color: #b3b3b3;
+                            font-weight: bold;
+                            border: 1px solid #ebebeb;
+                        }
+                        .active-tab {
+                            color: #999999;
+                        }
+                        &:first-child {
+                            .date-link {
+                                border-top-left-radius: 20px;
+                                border-bottom-left-radius: 20px;
+                            }
+                        }
+                        &:last-child {
+                            .date-link {
+                                border-top-right-radius: 20px;
+                                border-bottom-right-radius: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+            .date-current {
+                display: flex;
+                align-items: center;
+                max-width: 346px;
+                img {
+                    margin-right: 15px;
+                }
+                font-size: 16px;
+                font-weight: 700;
+                color: #b3b3b3;
+                border: 1px solid #ebebeb;
+                border-radius: 20px;
+                line-height: 56px;
+                padding: 0 18px;
+            }
+        }
+    }
+    .row {
+        row-gap: 40px;
+        .report-box {
+            width: 100%;
+            height: 200px;
+            padding: 20px;
+            background: #fff;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+            .box-header {
+                display: flex;
+                justify-content: space-between;
+            }
+            .box-body {
+                font-size: 64px;
+                color: #808080;
+            }
+            .box-footer {
+                font-size: 17px;
+                line-height: 39px;
+                color: #999999;
+            }
+            .negative {
+                color: #fd0f17;
+            }
+            .positive {
+                color: #00de51;
+            }
+            .options {
+                position: absolute;
+                right: 0;
+                top: 5px;
+                color: #b3b3b3;
+                width: 100%;
+                text-align: right;
+                &:hover {
+                    .selects {
+                        display: block;
+                    }
+                }
+                .selects {
+                    display: none;
+                    width: 100%;
+                    position: absolute;
+                    right: 0;
+                    text-align: left;
+                    border-radius: 10px;
+                    padding: 10px;
+                    background: #fff;
+                    button {
+                        font-size: 14px;
+                        border: none;
+                        padding: 10px;
+                        border-radius: 10px;
+                        width: 100%;
+                        background: #fff;
+                        color: #111111;
+                        text-align: left;
+                        margin-bottom: 10px;
+                        &:hover {
+                            background: #b3b3b3;
+                        }
+                    }
+                }
+            }
+        }
+        .apexcharts-legend {
+            padding: 0;
+            .apexcharts-legend-series {
+                width: 50% !important;
+                text-align: left !important;
+                .apexcharts-legend-marker {
+                    margin-right: 20px !important;
+                }
+                .apexcharts-legend-text {
+                    color: #b9b9b9 !important;
+                    font-weight: bold !important;
+                }
+            }
+        }
+    }
+}

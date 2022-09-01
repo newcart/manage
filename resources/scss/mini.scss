@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap');
+@font-face {
+    font-family: 'Axiforma';
+    src: url('../fonts/Axiforma-Light.eot');
+    src: url('../fonts/Axiforma-Light.woff2') format('woff2'),
+        url('../fonts/Axiforma-Light.woff') format('woff'),
+        url('../fonts/Axiforma-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    padding: 20px;
+    .login-screen-left{
+        position: relative;
+        padding: 70px 0;
+        border-radius:10px;
+        z-index: 123123;
+        margin-right: -50px;
+
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+            -webkit-box-shadow: 0px 5px 40px 0px rgba(172,172,172,1);
+                    -moz-box-shadow: 0px 5px 40px 0px rgba(172,172,172,1);
+                    box-shadow: 0px 5px 40px 0px rgba(172,172,172,1);
+        }
+        .content{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            max-width: 530px;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            font-family: Axiforma, sans-serif;
+            .title{
+                .title-left{
+                font-size: 69px;
+                font-weight: 300;
+                color: #fff;
+                opacity: .5;
+                }
+                .title-right{
+                    font-size: 56px;
+                    opacity: 1 !important;
+                    color: #fff;
+                }
+            }
+            .text{
+                font-size: 20px;
+                font-family: 'Sen', sans-serif;
+                color: #fff;
+                opacity: .5;
+            }
+}
+    }
+    .login-screen-right{
+        width: 100%;
+        max-width: 700px;
+        height: 100%;
+        max-height: 890px;
+        font-family: 'Sen', sans-serif;
+        border-radius:10px;
+        background: #FAFAFA;
+        padding: 10px 100px;
+        .logo{
+            width: 283px;
+            height: 79px;
+            margin: 0 auto;
+            margin-bottom: 60px;
+            img{
+                width: 283px;
+                height: 79px;
+            }
+        }
+        .footer{
+            text-align: center;
+            font-size: 20px;
+            color: #707070;
+            line-height: 24px;
+            a{
+                color: #0378FF;
+                font-weight: bold;
+                text-decoration: none;
+                &:hover{
+                    opacity: .8;
+                }
+            }
+        }
+
+        .alert {
+            input {
+                &:focus {
+                    border-left: 6px solid #ef4444 !important;
+                }
+                &:valid {
+                    border-left: 6px solid #ef4444 !important;
+                }
+            }
+        }
+        .group{
+            position:relative;
+            margin-bottom:50px;
+            text-align: center;
+            input{
+                font-size:14px;
+                padding: 40px 15px 20px 15px;
+                display:block;
+                border:none;
+                font-size: 18px;
+                color: #707070;
+                background: #EFF6F9;
+                width: 100%;
+                &:focus{
+                    background: #fff !important;
+                    border-left: 6px solid #0378FF;
+                    transition:0.4s ease all;
+                    -moz-transition:0.4s ease all;
+                    -webkit-transition:0.4s ease all;
+                    -ms-transition:0.4s ease all;
+                    -o-transition:0.4s ease all;
+                    -webkit-box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    -moz-box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    outline: none;
+
+                }
+                &:valid{
+                    background: #fff !important;
+                    border-left: 6px solid #0378FF;
+                    transition:0.4s ease all;
+                    -moz-transition:0.4s ease all;
+                    -webkit-transition:0.4s ease all;
+                    -ms-transition:0.4s ease all;
+                    -o-transition:0.4s ease all;
+                    -webkit-box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    -moz-box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                }
+              }
+            label{
+                color:#707070;
+                font-size:14px;
+                font-weight:normal;
+                position:absolute;
+                pointer-events:none;
+                left:15px;
+                top: 50%;
+                transform: translateY(-50%);
+                transition:0.4s ease all;
+                -moz-transition:0.4s ease all;
+                -webkit-transition:0.4s ease all;
+                -ms-transition:0.4s ease all;
+                -o-transition:0.4s ease all;
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+            }
+            .forgot-pass{
+                font-size: 14px;
+                text-decoration: none;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #707070;
+                opacity: .3;
+            }
+            input:focus ~ label, input:valid ~ label 	{
+                top:20px;
+                left: 21px;
+                font-size:14px;
+                color:rgba(112, 112, 112, 0.5);
+            }
+            .submit-btn{
+                width: 100%;
+                max-width: 445px;
+                background: #0378FF;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+                border: none;
+                width: 100%;
+                color: #fff;
+                line-height: 80px;
+                cursor: pointer;
+                vertical-align: middle;
+                transition:0.4s ease all;
+                    -moz-transition:0.4s ease all;
+                    -webkit-transition:0.4s ease all;
+                    -ms-transition:0.4s ease all;
+                    -o-transition:0.4s ease all;
+                &:hover{
+                    transform: scale(1.03);
+                    -webkit-transform: scale(1.03);
+                    -moz-transform: scale(1.03);
+                    -ms-transform: scale(1.03);
+                    -o-transform: scale(1.03);
+                    -webkit-box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    -moz-box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+                    box-shadow: 0px 3px 20px 0px rgba(172,172,172,0.5);
+}
+            }
+          }
+    }
+}
+
+// Title animation
+
+ .title {
+    width: 35ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+ }
+
+  @keyframes typing {
+   from {
+      width: 0
+     }
+  }
+
+
+@media(max-width:1200px){
+    .login-screen{
+        display: block;
+        height: 100%;
+        .login-screen-left{
+            padding: 0;
+            margin: 0;
+            margin-bottom: 30px;
+            .content{
+                padding: 25px;
+                .title{
+                    .title-left{
+                        font-size: 40px;
+                    }
+                    .title-right{
+                        font-size: 35px;
+                    }
+                }
+                .text{
+                    font-size: 16px;
+                }
+            }
+        }
+        .login-screen-right{
+            padding: 30px 0;
+            .logo{
+                img{
+                    width: 240px;
+                    height: 60px;
+                }
+            }
+            .group{
+                width: 90%;
+                margin: 0 auto;
+                margin-bottom: 30px;
+                input{
+                    font-size: 16px;
+                    padding: 30px 15px 20px 15px;
+                }
+                .submit-btn{
+                    line-height: 68px;
+                    font-size: 16px;
+                }
+            }
+            .footer{
+                font-size: 16px;
+            }
+        }
+    }
+}
