@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Helpers\Components;
+use App\Helpers\General;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
@@ -12,6 +13,20 @@ use UserHelper;
 
 class ProductController extends Controller
 {
+    // service to be validated
+    protected string $class;
+
+    // permission to be validated
+    protected string $method;
+
+    /**
+     * Sets class and method for every method in this class for checking permissions.
+     */
+    public function __construct()
+    {
+        $this->class = General::getClass();
+        $this->method = General::getMethod();
+    }
     /**
      * Displays all products using DataTables.
      *
@@ -28,7 +43,7 @@ class ProductController extends Controller
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-        if(User::thisUserHasPermission('can_view', 'products'))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/products', 'admin'),
@@ -50,7 +65,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        if(User::thisUserHasPermission('can_create', 'products'))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
                 'sidebar' => Components::SideBar('dashboard', 'admin'),
@@ -72,7 +87,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if(User::thisUserHasPermission('can_create', 'products'))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $this->validate($request, [
                 'name' => 'required|string|max:255',
@@ -111,7 +126,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if(User::thisUserHasPermission('can_update', 'products'))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
                 'sidebar' => Components::SideBar('dashboard', 'admin'),
@@ -133,7 +148,7 @@ class ProductController extends Controller
      */
     public function update(Request $request)
     {
-        if(User::thisUserHasPermission('can_update', 'products'))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $this->validate($request, [
                 'name' => 'required|string|max:255',
@@ -166,7 +181,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if(User::thisUserHasPermission('can_delete', 'products'))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $product->delete();
             notify()->success('Ürün başarıyla silindi.', 'Başarılı');

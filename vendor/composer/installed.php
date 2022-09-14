@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '4d407143705f9b0ba3d3c8a8764e6b030e073a03',
+        'reference' => '69529a831b4a80061bcd44c0f73159bcd937fc82',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -439,7 +439,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '4d407143705f9b0ba3d3c8a8764e6b030e073a03',
+            'reference' => '69529a831b4a80061bcd44c0f73159bcd937fc82',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -478,6 +478,15 @@
             'reference' => '09f0e9fb61829f628205b7c94906c28740ff9540',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/serializable-closure',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laravel/telescope' => array(
+            'pretty_version' => 'v4.9.3',
+            'version' => '4.9.3.0',
+            'reference' => 'c41476272bc03e470d3be1d718885a947adb7c49',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/telescope',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -844,8 +853,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
