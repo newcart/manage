@@ -19,5 +19,5 @@ use Illuminate\Support\Str;
 // error_reporting(E_ALL);
 
 include 'authentication.php';
-include 'dashboard/web.php';
+include 'dashboard\web.php';
 
