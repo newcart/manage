@@ -9,11 +9,15 @@
     <link rel="stylesheet" href="{{ asset('assets/scss/mini.css') }}">
     <link rel="shortcut icon" href="https://www.akilliphone.com/views/kuteshop/img/favicon.png?v=9" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/notify.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/notify.css') }}">
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     @notifyJs
 </head>
 
 <body>
+
+    <x:notify-messages />
+
     <section class="login-screen">
         <div class="login-screen-left">
             <div class="left-img">
