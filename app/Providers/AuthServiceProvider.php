@@ -26,30 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        // Checks if the logged in user has permission to view the page
-        Gate::define('isAuthorized', function ($user) {
-            $permission = Session::get('user_type');
-            $items = config('sidebar.items');
-            $url = Request::path();
-            foreach ($items as $item)
-            {
-                if ($item['url'] == $url)
-                {
-                    if (in_array($permission->code, $item['user_types']) || in_array('*', $item['user_types']))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        });
     }
 }
