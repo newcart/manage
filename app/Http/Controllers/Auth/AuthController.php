@@ -24,8 +24,6 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         $val = $request->validated();
-        dd($val);
-
         if (Auth::attempt($val)) {
             $request->session()->regenerate();
             notify()->success('Giriş Yapıldı!', 'İşlem Başarılı');
