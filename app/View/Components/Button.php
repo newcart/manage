@@ -19,10 +19,10 @@ class Button extends Component
      * @return void
      */
     public function __construct(
-        string $class,
-        string $address,
-        string $icon,
-        string $title
+        string $class   ='primary',
+        string $address ='#',
+        string $icon    ='',
+        string $title   =''
     )
     {
         $this->class = $class;

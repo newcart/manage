@@ -8,5 +8,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::name('panel.')->group(function() {
         include 'users/web.php';
         include 'products.php';
+        include 'orders.php';
     });
 });

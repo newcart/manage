@@ -21,3 +21,4 @@ document.querySelector('.mobile-sidenav').addEventListener("click", toggleClass)
             document.querySelector('.navbar-primary').classList.add('collapsed');
         }
 };
+

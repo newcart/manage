@@ -26,7 +26,7 @@ class AuthController extends Controller
             $request->session()->put('user_type', $user_type);
             return redirect()->route('panel');
         } else {
-            notify()->warning('Giriş Yapılamadı! Yanlış e-posta veya şifre.', 'İşlem Başarısız.');
+            notify()->error('Giriş Yapılamadı! Yanlış e-posta veya şifre.', 'İşlem Başarısız.');
             return redirect()->back();
         }
     }

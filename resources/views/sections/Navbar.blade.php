@@ -3,7 +3,7 @@
     <nav class="navbar navbar-inverse navbar-global navbar-fixed-top p-0">
         <div class="container-fluid h-100">
             <div class="logo-section">
-                <a href="#" class="btn-expand-collapse">
+                <a href="" class="btn-expand-collapse">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16">
                         <path id="Icon"
                             d="M166-45h24v-2.667H166V-45Zm0-6.667h24v-2.667H166v2.667ZM166-61v2.667h24V-61Z"
