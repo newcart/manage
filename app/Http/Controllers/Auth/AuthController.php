@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Models\User;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use UserHelper;
 
 class AuthController extends Controller
 {
@@ -24,6 +24,7 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         $val = $request->validated();
+        dd($val);
 
         if (Auth::attempt($val)) {
             $request->session()->regenerate();
@@ -64,7 +65,7 @@ class AuthController extends Controller
 
     public function type()
     {
-        return \UserHelper::getType();
+        return UserHelper::getType();
 
     }
 }

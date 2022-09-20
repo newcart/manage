@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kullanıcıalar - Akıllıphone')
+@section('title', 'Kullanıcılar - Akıllıphone')
 
 @section('content')
     <a href="{{ route('panel.users.new') }}" class="btn btn-primary">
