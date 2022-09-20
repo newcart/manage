@@ -46,7 +46,7 @@ class ServiceController extends Controller
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-        if(User::userHasPermission($this->method, $this->class))
+        if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
@@ -69,7 +69,7 @@ class ServiceController extends Controller
      */
     public function create(): View|Factory|RedirectResponse|Application
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar()
@@ -89,7 +89,7 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request): RedirectResponse
     {
-        if (User::userHasPermission($this->method, $this->class)) {
+        if (User::thisUserHasPermission($this->method, $this->class)) {
             $validated = $request->validated();
             $user_type = UserType::create([
                 'code' => $validated['code'],
