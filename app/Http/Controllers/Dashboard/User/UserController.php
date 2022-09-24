@@ -89,8 +89,7 @@ class UserController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'user' => User::find($id),
-                'roles' => User::getRoles()
+                'user' => User::find($id)
             ];
             return view('dashboard.users.edit', $data);
         } else {
