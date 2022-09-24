@@ -9,13 +9,13 @@
         </svg>
         Geri Dön
     </a>
-    <a href="{{ route('panel.users.types.new') }}" class="btn btn-warning">
+    <a href="{{ route('panel.users.types') }}" class="btn btn-warning">
         Yekti Ekle
     </a>
-    <a href="{{ route('panel.roles.types') }}" class="btn btn-success">
+    <a href="{{ route('panel.users.roles') }}" class="btn btn-success">
         Roller
     </a>
-    <a href="{{ route('panel.services.roles') }}" class="btn btn-danger">
+    <a href="{{ route('panel.users.services') }}" class="btn btn-danger">
         Servisler
     </a>
 
