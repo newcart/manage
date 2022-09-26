@@ -3,7 +3,7 @@
 @section('title', $type->name .' | Kullanıcı Tipi Düzenle - Akıllıphone')
 
 @section('content')
-    <h1>{{ $type->code }} kodlu kullanıcı tipini düzenliyorsunuz</h1>
+    <h1>{{ $type->name }} kullanıcı tipini düzenliyorsunuz</h1>
     <form action="{{ route('panel.users.types.update', $type) }}" method="POST" class="mt-3">
         @csrf
         @method('PUT')
@@ -23,6 +23,56 @@
                 <span class="slider round"></span>
             </label>
         </div>
+        @foreach($services as $service)
+            <div class="flex gap-2 mb-3">
+                <p>{{ $service->name }}</p>
+                <div>
+                    <p>Görüntüle</p>
+                    <label class="switch">
+                        @if ($roles[$service->code]['view'])
+                            <input type="checkbox" name="services[{{ $service->code }}][view]" checked>
+                        @else
+                            <input type="checkbox" name="services[{{ $service->code }}][view]">
+                        @endif
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div>
+                    <p>Oluştur</p>
+                    <label class="switch">
+
+                        @if ($roles[$service->code]['create'])
+                            <input type="checkbox" name="services[{{ $service->code }}][create]" checked>
+                        @else
+                            <input type="checkbox" name="services[{{ $service->code }}][create]">
+                        @endif
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div>
+                    <p>Güncelle</p>
+                    <label class="switch">
+                        @if ($roles[$service->code]['update'])
+                            <input type="checkbox" name="services[{{ $service->code }}][update]" checked>
+                        @else
+                            <input type="checkbox" name="services[{{ $service->code }}][update]">
+                        @endif
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div>
+                    <p>Sil</p>
+                    <label class="switch">
+                        @if ($roles[$service->code]['delete'])
+                            <input type="checkbox" name="services[{{ $service->code }}][delete]" checked>
+                        @else
+                            <input type="checkbox" name="services[{{ $service->code }}][delete]">
+                        @endif
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        @endforeach
         <button type="submit" class="btn btn-primary">Kullanıcı Tipini Güncelle</button>
     </form>
 @endsection

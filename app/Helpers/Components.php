@@ -32,7 +32,7 @@ class Components
 
     public static function createDatatableJs(string $service, array $cols): string
     {
-        $host = request()->getHttpHost();
+        $host = request()->getHost();
         $columns = '';
         foreach ($cols as $key => $value) {
             $columns .= "{

@@ -62,6 +62,8 @@ class Role extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'service_id',
+        'user_type_id',
         'status',
         'can_view',
         'can_create',
@@ -75,7 +77,11 @@ class Role extends Model
      * @var array<int, string>
      */
     protected $attributes = [
-        'status' => 1
+        'status' => 1,
+        'can_view' => 0,
+        'can_create' => 0,
+        'can_update' => 0,
+        'can_delete' => 0,
     ];
 
     /**

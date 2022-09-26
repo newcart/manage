@@ -3,8 +3,8 @@
 @section('title', $service->name . ' | Servis Düzenle - Akıllıphone')
 
 @section('content')
-    <h1>{{ $service->code }} kodlu servisi düzenliyorsunuz</h1>
-    <form action="{{ route('panel.users.service.update', $service) }}" method="POST" class="mt-3">
+    <h1>{{ $service->name }} servisini düzenliyorsunuz</h1>
+    <form action="{{ route('panel.users.services.update', $service) }}" method="POST" class="mt-3">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$service->type_id}}">
