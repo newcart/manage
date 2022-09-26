@@ -21,6 +21,39 @@
                 <span class="slider round"></span>
             </label>
         </div>
+        @foreach($services as $service)
+            <div class="flex gap-2 mb-3">
+                <p>{{ $service->name }}</p>
+                <div>
+                    <p>Görüntüle</p>
+                    <label class="switch">
+                        <input type="checkbox" name="services[{{ $service->code }}][view]">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div>
+                    <p>Oluştur</p>
+                    <label class="switch">
+                        <input type="checkbox" name="services[{{ $service->code }}][create]">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div>
+                    <p>Güncelle</p>
+                    <label class="switch">
+                        <input type="checkbox" name="services[{{ $service->code }}][update]">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div>
+                    <p>Sil</p>
+                    <label class="switch">
+                        <input type="checkbox" name="services[{{ $service->code }}][delete]">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        @endforeach
         <button type="submit" class="btn btn-primary">Servis ekle</button>
     </form>
 @endsection

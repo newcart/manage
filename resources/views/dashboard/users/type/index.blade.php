@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kullanıcılar - Akıllıphone')
+@section('title', 'Yetkiler - Akıllıphone')
 
 @section('content')
     <a href="{{ route('panel.users') }}" class="btn btn-primary">
@@ -9,11 +9,8 @@
         </svg>
         Geri Dön
     </a>
-    <a href="{{ route('panel.users.types') }}" class="btn btn-warning">
+    <a href="{{ route('panel.users.types.create') }}" class="btn btn-warning">
         Yekti Ekle
-    </a>
-    <a href="{{ route('panel.users.roles') }}" class="btn btn-success">
-        Roller
     </a>
     <a href="{{ route('panel.users.services') }}" class="btn btn-danger">
         Servisler

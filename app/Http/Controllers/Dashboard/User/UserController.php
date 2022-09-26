@@ -7,6 +7,7 @@ use App\Helpers\General;
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,6 +36,7 @@ class UserController extends Controller
      */
     public function index(): View|Factory|RedirectResponse|Application
     {
+        $host = request()->getHttpHost();
         $cols = [
             'user_id' => 'No',
             'name' => 'Username',
@@ -50,7 +52,7 @@ class UserController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable('http://127.0.0.1:8000/dashboard/users/table', $cols)
+                'datatable' => Components::createDatatable( $this->class. "s", $cols)
             ];
             return view('dashboard.users.index', $data);
         } else {

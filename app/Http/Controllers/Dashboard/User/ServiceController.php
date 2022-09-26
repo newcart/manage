@@ -51,7 +51,7 @@ class ServiceController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable('http://127.0.0.1:8000/dashboard/users/services/table', $cols)
+                'datatable' => Components::createDatatable( "users/services", $cols)
             ];
             return view('dashboard.users.service.index', $data);
         }
@@ -118,15 +118,14 @@ class ServiceController extends Controller
      */
     public function edit(Service $service): View|Factory|RedirectResponse|Application
     {
-        $type = UserType::findOrFail($service->service_id);
 
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'type' => $type
+                'service' => Service::findOrFail($service->service_id)
             ];
-            return view('dashboard.users.type.edit', $data);
+            return view('dashboard.users.service.edit', $data);
         } else {
             notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
             return redirect()->back();

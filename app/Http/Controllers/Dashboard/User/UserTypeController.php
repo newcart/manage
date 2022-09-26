@@ -7,10 +7,13 @@ use App\Helpers\General;
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserTypeRequest;
+use App\Models\Role;
+use App\Models\Service;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class UserTypeController extends Controller
@@ -32,9 +35,9 @@ class UserTypeController extends Controller
 
     /**
      * Displays all users using DataTables.
-     * @return Factory|Application|\Illuminate\Contracts\View\View|RedirectResponse
+     * @return Factory|Application|View|RedirectResponse
      */
-    public function index(): Factory|Application|\Illuminate\Contracts\View\View|RedirectResponse
+    public function index(): Factory|Application|View|RedirectResponse
     {
         $cols = [
             'type_id' => 'No',
@@ -49,7 +52,7 @@ class UserTypeController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable(route('panel.users.types.table'), $cols)
+                'datatable' => Components::createDatatable( "users/types", $cols),
             ];
             return view('dashboard.users.type.index', $data);
         } else {
@@ -60,14 +63,15 @@ class UserTypeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\View|Factory|RedirectResponse|Application
+     * @return View|Factory|RedirectResponse|Application
      */
-    public function create(): \Illuminate\Contracts\View\View|Factory|RedirectResponse|Application
+    public function create(): View|Factory|RedirectResponse|Application
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar()
+                'navbar' => Components::Navbar(),
+                'services' => Service::all()
             ];
             return view('dashboard.users.type.create', $data);
         } else {
@@ -85,13 +89,35 @@ class UserTypeController extends Controller
     public function store(UserTypeRequest $request): RedirectResponse
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
-            $user_type = UserType::create($request->validated());
+            $val = $request->validated();
+            $userType = UserType::create([
+                'code' => $val['code'],
+                'name' => $val['name'],
+                'status' => $val['status'],
+            ]);
 
-            if ($user_type) {
+            $usertp = UserType::where('code', $val['code'])->first();
+            foreach ($val['services'] as $service => $method) {
+                $serviceId = Service::where('code', $service)->first()->service_id;
+                $role = [
+                    'user_type_id' => $usertp->type_id,
+                    'service_id' => $serviceId,
+                    'status' => 1
+                ];
+                foreach ($method as $key => $value) {
+                    $role["can_$key"] = $value;
+                }
+                Role::create($role);
+            }
+
+            if ($userType) {
                 notify()->success('Kullanıcı tipi başarıyla oluşturuldu.', 'Başarılı');
+                return redirect()->route('panel.users.types.index');
             } else {
                 notify()->error('Kullanıcı tipi oluşturulurken bir hata oluştu.', 'Hata');
+                return redirect()->back();
             }
+
         } else {
             notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
         }
@@ -101,17 +127,47 @@ class UserTypeController extends Controller
     /**
      * Returns a view to edit a user type.
      * @param UserType $type
-     * @return \Illuminate\Contracts\View\View|Factory|RedirectResponse|Application
+     * @return View|Factory|RedirectResponse|Application
      */
-    public function edit(UserType $type): \Illuminate\Contracts\View\View|Factory|RedirectResponse|Application
+    public function edit(UserType $type): View|Factory|RedirectResponse|Application
     {
-        $type = UserType::findOrFail($type->type_id);
-
         if (User::thisUserHasPermission($this->method, $this->class)) {
+            $services = Service::all();
+            $roles = [];
+            $rols = Role::where('user_type_id', $type->type_id)->get();
+            foreach ($rols as $role) {
+                $serviceCode = Service::where('service_id', $role->service_id)->first()->code;
+                $roles[$serviceCode] = [
+                    'create' => $role->can_create,
+                    'view' => $role->can_view,
+                    'update' => $role->can_update,
+                    'delete' => $role->can_delete,
+                ];
+            }
+            $emptyRoles = [];
+            foreach ($services as $service) {
+                if (!isset($roles[$service->code])) {
+                    $emptyRoles[$service->code] = [
+                        'create' => 0,
+                        'view' => 0,
+                        'update' => 0,
+                        'delete' => 0,
+                    ];
+                }
+            }
+
+            if (count($roles) > 0) {
+                $roles = array_merge($roles, $emptyRoles);
+            } else {
+                $roles = $emptyRoles;
+            }
+
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'type' => $type
+                'type' => UserType::findOrFail($type->type_id),
+                'services' => Service::all(),
+                'roles' => $roles
             ];
             return view('dashboard.users.type.edit', $data);
         } else {
@@ -129,7 +185,27 @@ class UserTypeController extends Controller
     public function update(UserTypeRequest $request, UserType $type): RedirectResponse
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
-            $updatedType = UserType::findOrFail($type->type_id)->update($request->validated());
+            $val = $request->validated();
+            $updatedType = UserType::findOrFail($type->type_id)->update([
+                'code' => $val['code'],
+                'name' => $val['name'],
+                'status' => $val['status'],
+            ]);
+
+
+            foreach ($val['services'] as $service => $method) {
+                $serviceId = Service::where('code', $service)->first()->service_id;
+                $role = [
+                    'user_type_id' => $type->type_id,
+                    'service_id' => $serviceId,
+                    'status' => 1
+                ];
+                foreach ($method as $key => $value) {
+                    $role["can_$key"] = $value;
+                }
+                Role::findOrFail($type->type_id)->update($role);
+            }
+
             if ($updatedType) {
                 notify()->success('Kullanıcı tipi başarıyla güncellendi.', 'Başarılı');
                 return redirect()->route('panel.users.types');

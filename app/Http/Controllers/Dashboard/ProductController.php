@@ -7,9 +7,14 @@ use App\Helpers\General;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Session;
-use UserHelper;
+use App\Helpers\UserHelper;
+use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
@@ -30,8 +35,9 @@ class ProductController extends Controller
     /**
      * Displays all products using DataTables.
      *
+     * @return View|Factory|Application|RedirectResponse
      */
-    public function index()
+    public function index(): View|Factory|Application|RedirectResponse
     {
         $cols = [
             'product_id' => 'No',
@@ -48,7 +54,7 @@ class ProductController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/products', 'admin'),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable('http://127.0.0.1:8000/dashboard/products/table', $cols)
+                'datatable' => Components::createDatatable( $this->class. "s", $cols)
             ];
             return view('dashboard.products.index', $data);
         }
@@ -62,8 +68,9 @@ class ProductController extends Controller
     /**
      * Displays form to create new product.
      *
+     * @return View|Factory|RedirectResponse|Application
      */
-    public function create()
+    public function create(): View|Factory|RedirectResponse|Application
     {
         if(User::thisUserHasPermission($this->method, $this->class))
         {
@@ -84,8 +91,10 @@ class ProductController extends Controller
      * Stores new product in database.
      *
      * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         if(User::thisUserHasPermission($this->method, $this->class))
         {
@@ -122,9 +131,11 @@ class ProductController extends Controller
 
     /**
      * Displays form to edit product.
+     *
      * @param Product $product
+     * @return View|Factory|Application|RedirectResponse
      */
-    public function edit(Product $product)
+    public function edit(Product $product): View|Factory|RedirectResponse|Application
     {
         if(User::thisUserHasPermission($this->method, $this->class))
         {
@@ -144,9 +155,11 @@ class ProductController extends Controller
 
     /**
      * Updates product in database.
+     *
      * @param Request $request
+     * @return View|Factory|Application|RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): Factory|View|RedirectResponse|Application
     {
         if(User::thisUserHasPermission($this->method, $this->class))
         {
@@ -177,9 +190,11 @@ class ProductController extends Controller
 
     /**
      * Deletes product from database.
+     *
      * @param Product $product
+     * @return View|Factory|Application|RedirectResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): Factory|View|RedirectResponse|Application
     {
         if(User::thisUserHasPermission($this->method, $this->class))
         {

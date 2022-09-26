@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,8 +16,16 @@ class UserTypeRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
+        $services = [];
+        foreach ($this->services as $service => $method) {
+            foreach ($method as $key => $value) {
+                $services[$service][$key] = $value == 'on' ? 1 : 0;
+            }
+        }
+
         $this->merge([
-            'status' => $this->status == "on" ? 1 : 0,
+            'status'    => $this->status == "on" ? 1 : 0,
+            'services'  => $services
         ]);
     }
 
@@ -27,9 +36,14 @@ class UserTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (User::userHasPermission('can_create', 'usertype') || User::userHasPermission('can_edit', 'usertype')) {
+        if (
+            User::thisUserHasPermission('can_create', 'usertype')
+            || // or
+            User::thisUserHasPermission('can_edit', 'usertype')
+        )   {
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -48,10 +62,23 @@ class UserTypeRequest extends FormRequest
      */
     public function rules(): array
     {
+        $allServices = Service::all();
+        $services = [];
+        foreach ($allServices as $service) {
+            $services[] = [
+                $service->code => [
+                    'can_view'      => 'boolean',
+                    'can_create'    => 'boolean',
+                    'can_update'    => 'boolean',
+                    'can_delete'    => 'boolean',
+                ]
+            ];
+        }
         return [
-            'code' => 'required|string',
-            'name' => 'required|string',
+            'code' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'status' => 'required|boolean',
+            'services' => $services
         ];
     }
 

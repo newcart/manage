@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kullanıcıalar - Akıllıphone')
+@section('title', 'Servisler - Akıllıphone')
 
 @section('content')
     <a href="{{ route('panel.users') }}" class="btn btn-primary">
@@ -14,9 +14,6 @@
     </a>
     <a href="{{ route('panel.users.types') }}" class="btn btn-success">
         Yetkiler
-    </a>
-    <a href="{{ route('panel.users.roles') }}" class="btn btn-danger">
-        Roller
     </a>
 
     {!! $datatable['html'] !!}

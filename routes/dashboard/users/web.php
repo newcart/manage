@@ -21,6 +21,5 @@ Route::group(['prefix' => 'users'], function () {
 
         include 'user_type.php';
         include 'services.php';
-        include 'roles.php';
     });
 });

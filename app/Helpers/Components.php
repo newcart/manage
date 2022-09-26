@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class Components
 {
-    public static function SideBar(string $url, string $user_type)
+    public static function SideBar(string $url, string $user_type): string
     {
         $items = config('sidebar.items');
 
@@ -30,8 +30,9 @@ class Components
         return view('sections.Navbar', $data)->render();
     }
 
-    public static function createDatatableJs(string $ajaxURL, array $cols)
+    public static function createDatatableJs(string $service, array $cols): string
     {
+        $host = request()->getHttpHost();
         $columns = '';
         foreach ($cols as $key => $value) {
             $columns .= "{
@@ -47,7 +48,7 @@ class Components
             const table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '". $ajaxURL ."',
+                ajax: '". "http://$host/dashboard/$service/table" ."',
                 columns: [
                     " . $columns . "
                     {
@@ -65,7 +66,7 @@ class Components
         return $html;
     }
 
-    public static function createDatatableHTML(array $cols)
+    public static function createDatatableHTML(array $cols): string
     {
         $html = "
         <table class='table table-bordered table-striped data-table'>
@@ -86,10 +87,10 @@ class Components
         return $html;
     }
 
-    public static function createDatatable(string $ajaxURL, array $cols)
+    public static function createDatatable(string $service, array $cols): array
     {
         $html = self::createDatatableHTML($cols);
-        $js = self::createDatatableJs($ajaxURL, $cols);
+        $js = self::createDatatableJs($service, $cols);
         return [
             'html' => $html,
             'js' => $js

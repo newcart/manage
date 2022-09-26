@@ -9,9 +9,6 @@
         </svg>
         Geri Dön
     </a>
-    <a href="{{ route('panel.users.roles.new') }}" class="btn btn-warning">
-        Rol Ekle
-    </a>
     <a href="{{ route('panel.users.types') }}" class="btn btn-success">
         Yetkiler
     </a>

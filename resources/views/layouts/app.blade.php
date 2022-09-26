@@ -10,8 +10,6 @@
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap5.css') }}">
 
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.js') }}"></script>
-
     <link rel="shortcut icon" href="https://www.akilliphone.com/views/kuteshop/img/favicon.png?v=9" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -38,6 +36,7 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset("assets/js/jquery.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.js') }}"></script>
 </body>
 
 </html>

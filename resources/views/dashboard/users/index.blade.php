@@ -12,9 +12,6 @@
     <a href="{{ route('panel.users.types') }}" class="btn btn-success">
         Yetkiler
     </a>
-    <a href="{{ route('panel.users.roles') }}" class="btn btn-danger">
-        Roller
-    </a>
 
     {!! $datatable['html'] !!}
 @endsection
