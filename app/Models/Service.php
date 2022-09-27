@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Service
@@ -13,20 +17,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $code
  * @property string $name
  * @property int $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|Role[] $roles
  * @property-read int|null $roles_count
- * @method static \Illuminate\Database\Eloquent\Builder|Service newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Service newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Service query()
- * @method static \Illuminate\Database\Eloquent\Builder|Service whereCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Service whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Service whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Service whereServiceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Service whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Service whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static Builder|Service newModelQuery()
+ * @method static Builder|Service newQuery()
+ * @method static Builder|Service query()
+ * @method static Builder|Service whereCode($value)
+ * @method static Builder|Service whereCreatedAt($value)
+ * @method static Builder|Service whereName($value)
+ * @method static Builder|Service whereServiceId($value)
+ * @method static Builder|Service whereStatus($value)
+ * @method static Builder|Service whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Service extends Model
 {

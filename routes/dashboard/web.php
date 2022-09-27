@@ -7,7 +7,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('/', [HomeController::class, 'dashboard'])->name('panel');
     Route::name('panel.')->group(function() {
         include 'users/web.php';
-        include 'products/products.php';
-        include 'orders/orders.php';
+        include 'products/web.php';
+        include 'orders/web.php';
+        include 'category/web.php';
     });
 });

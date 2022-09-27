@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Service;
@@ -247,6 +248,46 @@ class DatatableController extends Controller
                     ";
                     $btn .= "
                     <form action='/dashboard/products/".$row->order_id."/delete' method='post' class='delete'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <input type='hidden' name='_token' value='" . csrf_token() . "'>
+                        <button type='submit' class='btn btn-danger btn-sm'>Sil</button>
+                    </form>
+                    ";
+                    return $btn;
+                })
+                ->rawColumns(['actions'])
+                ->make();
+        } else {
+            notify()->warning('Sunucuda bir hata oluştu, lütfen daha sonra tekrar deneyiniz.', 'Sunucu Hatası');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
+     * @throws Exception
+     */
+    public function categoriesTable(Request $request): JsonResponse|RedirectResponse
+    {
+        if ($request->ajax()) {
+            $data = Category::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d/m/Y');
+                })
+                ->addColumn('updated_at', function ($row) {
+                    return $row->updated_at->format('d/m/Y');
+                })
+                ->addColumn('actions', function ($row) {
+                    $btn = "
+                    <a href='/dashboard/products/".$row->category_id."/edit' class='edit btn btn-primary btn-sm'>
+                        Düzenle
+                    </a>
+                    ";
+                    $btn .= "
+                    <form action='/dashboard/products/".$row->category_id."/delete' method='post' class='delete'>
                         <input type='hidden' name='_method' value='delete'>
                         <input type='hidden' name='_token' value='" . csrf_token() . "'>
                         <button type='submit' class='btn btn-danger btn-sm'>Sil</button>

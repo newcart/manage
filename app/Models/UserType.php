@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,16 +23,16 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $roles_count
  * @property-read Collection|User[] $users
  * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|UserType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserType query()
- * @method static \Illuminate\Database\Eloquent\Builder|UserType whereCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserType whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserType whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserType whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserType whereTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserType whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static Builder|UserType newModelQuery()
+ * @method static Builder|UserType newQuery()
+ * @method static Builder|UserType query()
+ * @method static Builder|UserType whereCode($value)
+ * @method static Builder|UserType whereCreatedAt($value)
+ * @method static Builder|UserType whereName($value)
+ * @method static Builder|UserType whereStatus($value)
+ * @method static Builder|UserType whereTypeId($value)
+ * @method static Builder|UserType whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class UserType extends Model
 {

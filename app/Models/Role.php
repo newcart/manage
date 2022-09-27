@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Role
@@ -17,26 +21,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $can_update
  * @property int $can_delete
  * @property int $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Service[] $services
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|Service[] $services
  * @property-read int|null $services_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserType[] $types
+ * @property-read Collection|UserType[] $types
  * @property-read int|null $types_count
- * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Role query()
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereCanCreate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereCanDelete($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereCanUpdate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereCanView($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereRoleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereServiceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Role whereUserTypeId($value)
- * @mixin \Eloquent
+ * @method static Builder|Role newModelQuery()
+ * @method static Builder|Role newQuery()
+ * @method static Builder|Role query()
+ * @method static Builder|Role whereCanCreate($value)
+ * @method static Builder|Role whereCanDelete($value)
+ * @method static Builder|Role whereCanUpdate($value)
+ * @method static Builder|Role whereCanView($value)
+ * @method static Builder|Role whereCreatedAt($value)
+ * @method static Builder|Role whereRoleId($value)
+ * @method static Builder|Role whereServiceId($value)
+ * @method static Builder|Role whereStatus($value)
+ * @method static Builder|Role whereUpdatedAt($value)
+ * @method static Builder|Role whereUserTypeId($value)
+ * @mixin Eloquent
  */
 class Role extends Model
 {

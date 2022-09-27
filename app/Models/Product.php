@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Product
@@ -16,22 +19,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $price
  * @property string $images
  * @property int $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereBrand($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereImages($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereTax($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Product newModelQuery()
+ * @method static Builder|Product newQuery()
+ * @method static Builder|Product query()
+ * @method static Builder|Product whereBrand($value)
+ * @method static Builder|Product whereCode($value)
+ * @method static Builder|Product whereCreatedAt($value)
+ * @method static Builder|Product whereImages($value)
+ * @method static Builder|Product whereName($value)
+ * @method static Builder|Product wherePrice($value)
+ * @method static Builder|Product whereProductId($value)
+ * @method static Builder|Product whereStatus($value)
+ * @method static Builder|Product whereTax($value)
+ * @method static Builder|Product whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Product extends Model
 {
