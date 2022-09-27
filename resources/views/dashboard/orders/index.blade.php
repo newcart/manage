@@ -109,9 +109,12 @@
             </a>
         </div>
     </div>
+
+    {!! $datatable["html"] !!}
 @endsection
 
 @section('scripts')
+    {!! $datatable["js"] !!}
     <script src="{{ asset('assets/js/custom-select.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
     <script src="{{ asset('assets/js/flatpickr.min.js') }}"></script>
