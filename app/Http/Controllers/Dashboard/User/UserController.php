@@ -70,8 +70,7 @@ class UserController extends Controller
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
-                'roles' => User::getRoles()
+                'navbar' => Components::Navbar()
             ];
             return view('dashboard.users.create', $data);
         } else {
@@ -111,8 +110,7 @@ class UserController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'user' => User::find($id),
-                'roles' => User::getRoles()
+                'user' => User::find($id)
             ];
             return view('dashboard.users.show', $data);
         } else {
