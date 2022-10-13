@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{ asset('assets/scss/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/notify.css') }}">
     @yield('css')
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset("assets/js/jquery.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.js') }}"></script>
     @notifyJs
 </head>
 
@@ -35,8 +36,6 @@
     @include('sections.NotifyJs')
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset("assets/js/jquery.min.js") }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.js') }}"></script>
 </body>
 
 </html>

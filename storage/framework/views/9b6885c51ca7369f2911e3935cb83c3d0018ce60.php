@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="<?php echo e(asset('assets/scss/app.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/notify.css')); ?>">
     <?php echo $__env->yieldContent('css'); ?>
-    <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
+    <script src="<?php echo e(asset("assets/js/jquery.min.js")); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/jquery.dataTables.js')); ?>"></script>
     <?php echo notifyJs(); ?>
 </head>
 
@@ -51,8 +52,6 @@
     <?php echo $__env->make('sections.NotifyJs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <script src="<?php echo e(asset('assets/js/bootstrap.bundle.min.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/main.js')); ?>"></script>
-    <script src="<?php echo e(asset("assets/js/jquery.min.js")); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(asset('assets/js/jquery.dataTables.js')); ?>"></script>
 </body>
 
 </html>
