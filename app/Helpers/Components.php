@@ -48,7 +48,7 @@ class Components
             const table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '". "http://$host/dashboard/$service/table" ."',
+                ajax: '". "https://$host/dashboard/$service/table" ."',
                 columns: [
                     " . $columns . "
                     {
