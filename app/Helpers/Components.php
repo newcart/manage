@@ -32,12 +32,12 @@ class Components
 
     public static function createDatatableJs(string $service, array $cols): string
     {
-        $host = request()->getHost();
+        $host = request()->getSchemeAndHttpHost();
         $columns = '';
         foreach ($cols as $key => $value) {
             $columns .= "{
                 data: '". $key ."',
-                name: '". $key ."'
+                name: '". $key ."',
             },
             ";
         }
@@ -48,7 +48,7 @@ class Components
             const table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '". "https://$host/dashboard/$service/table" ."',
+                ajax: '". "$host/dashboard/$service/table" ."',
                 columns: [
                     " . $columns . "
                     {
@@ -73,11 +73,11 @@ class Components
             <thead>
                 <tr>
                     ";
-        foreach ($cols as $key => $value) {
-            $html .= "<th>". $value ."</th>";
-        }
-        $html .= "
-                    <th>Actions</th>
+                    foreach ($cols as $key => $value) {
+                        $html .= "<th>". $value ."</th>";
+                    }
+                    $html .= "
+                    <th>Eylemler</th>
                 </tr>
             </thead>
             <tbody>

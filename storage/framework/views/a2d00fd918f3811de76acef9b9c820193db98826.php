@@ -1,0 +1,11 @@
+<div class="boxes d-flex">
+        <div class="custom-select me-2">
+            <select>
+                <option value=<?php echo e($options[0]["value"]); ?>><?php echo e($options[0]["name"]); ?></option>
+                <?php $__currentLoopData = $options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value=<?php echo e($option["value"]); ?>><?php echo e($option["name"]); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+        </div>
+    </div>
+<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/dashboard/products/components/productType.blade.php ENDPATH**/ ?>

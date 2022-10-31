@@ -38,15 +38,15 @@ class UserController extends Controller
     {
         $host = request()->getHttpHost();
         $cols = [
-            'user_id' => 'No',
-            'name' => 'Username',
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
-            'email' => 'Email',
-            'gsm' => 'GSM',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'user_id' => 'ID',
+            'name' => 'Kullanıcı Adı',
+            'firstname' => 'Ad',
+            'lastname' => 'Soyad',
+            'email' => 'E-Posta',
+            'gsm' => 'Telefon Numarası',
+            'status' => 'Durum',
+            'created_at' => 'Oluşturma Tarihi',
+            'updated_at' => 'Güncelleme Tarihi',
         ];
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [

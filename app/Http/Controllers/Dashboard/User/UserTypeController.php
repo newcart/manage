@@ -40,12 +40,12 @@ class UserTypeController extends Controller
     public function index(): Factory|Application|View|RedirectResponse
     {
         $cols = [
-            'type_id' => 'No',
-            'code' => 'Code',
-            'name' => 'Name',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'type_id' => 'ID',
+            'code' => 'Kod',
+            'name' => 'Adı',
+            'status' => 'Durumu',
+            'created_at' => 'Oluşturulma Tarihi',
+            'updated_at' => 'Güncelleme Tarihi',
         ];
 
         if (User::thisUserHasPermission($this->method, $this->class)) {

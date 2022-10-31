@@ -39,12 +39,12 @@ class ServiceController extends Controller
     public function index(): View|Factory|RedirectResponse|Application
     {
         $cols = [
-            'service_id' => 'No',
-            'code' => 'Code',
-            'name' => 'Name',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'service_id' => 'ID',
+            'code' => 'Kod',
+            'name' => 'Ad',
+            'status' => 'Durum',
+            'created_at' => 'Oluşturma Tarihi',
+            'updated_at' => 'Güncelleme Tarihi',
         ];
         if(User::thisUserHasPermission($this->method, $this->class))
         {
