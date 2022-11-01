@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\Service;
-use App\Models\User;
-use App\Models\UserType;
+use App\Models\Order\Order;
+use App\Models\Product\Category;
+use App\Models\Product\Product;
+use App\Models\User\Service;
+use App\Models\User\UserType;
 use DB;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -464,6 +463,166 @@ class DatatableController extends Controller
                         </li>
                         </ul>
                     </div>
+                    ";
+                    return $btn;
+                })
+                ->rawColumns(['actions'])
+                ->make();
+        } else {
+            notify()->warning('Sunucuda bir hata oluştu, lütfen daha sonra tekrar deneyiniz.', 'Sunucu Hatası');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
+     * @throws Exception
+     */
+    public function customerTable(Request $request): JsonResponse|RedirectResponse
+    {
+        if ($request->ajax()) {
+            $data = Category::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d/m/Y');
+                })
+                ->addColumn('updated_at', function ($row) {
+                    return $row->updated_at->format('d/m/Y');
+                })
+                ->addColumn('actions', function ($row) {
+                    $btn = "
+                    <a href='/dashboard/products/".$row->customer_id."/edit' class='edit btn btn-primary btn-sm'>
+                        Düzenle
+                    </a>
+                    ";
+                    $btn .= "
+                    <form action='/dashboard/products/".$row->customer_id."/delete' method='post' class='delete'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <input type='hidden' name='_token' value='" . csrf_token() . "'>
+                        <button type='submit' class='btn btn-danger btn-sm'>Sil</button>
+                    </form>
+                    ";
+                    return $btn;
+                })
+                ->rawColumns(['actions'])
+                ->make();
+        } else {
+            notify()->warning('Sunucuda bir hata oluştu, lütfen daha sonra tekrar deneyiniz.', 'Sunucu Hatası');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
+     * @throws Exception
+     */
+    public function franchisesTable(Request $request): JsonResponse|RedirectResponse
+    {
+        if ($request->ajax()) {
+            $data = Category::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d/m/Y');
+                })
+                ->addColumn('updated_at', function ($row) {
+                    return $row->updated_at->format('d/m/Y');
+                })
+                ->addColumn('actions', function ($row) {
+                    $btn = "
+                    <a href='/dashboard/products/".$row->franchise_id ."/edit' class='edit btn btn-primary btn-sm'>
+                        Düzenle
+                    </a>
+                    ";
+                    $btn .= "
+                    <form action='/dashboard/products/".$row->franchise_id ."/delete' method='post' class='delete'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <input type='hidden' name='_token' value='" . csrf_token() . "'>
+                        <button type='submit' class='btn btn-danger btn-sm'>Sil</button>
+                    </form>
+                    ";
+                    return $btn;
+                })
+                ->rawColumns(['actions'])
+                ->make();
+        } else {
+            notify()->warning('Sunucuda bir hata oluştu, lütfen daha sonra tekrar deneyiniz.', 'Sunucu Hatası');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
+     * @throws Exception
+     */
+    public function integrationsTable(Request $request): JsonResponse|RedirectResponse
+    {
+        if ($request->ajax()) {
+            $data = Category::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d/m/Y');
+                })
+                ->addColumn('updated_at', function ($row) {
+                    return $row->updated_at->format('d/m/Y');
+                })
+                ->addColumn('actions', function ($row) {
+                    $btn = "
+                    <a href='/dashboard/products/".$row->integration_id ."/edit' class='edit btn btn-primary btn-sm'>
+                        Düzenle
+                    </a>
+                    ";
+                    $btn .= "
+                    <form action='/dashboard/products/".$row->integration_id ."/delete' method='post' class='delete'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <input type='hidden' name='_token' value='" . csrf_token() . "'>
+                        <button type='submit' class='btn btn-danger btn-sm'>Sil</button>
+                    </form>
+                    ";
+                    return $btn;
+                })
+                ->rawColumns(['actions'])
+                ->make();
+        } else {
+            notify()->warning('Sunucuda bir hata oluştu, lütfen daha sonra tekrar deneyiniz.', 'Sunucu Hatası');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
+     * @throws Exception
+     */
+    public function paymentsTable(Request $request): JsonResponse|RedirectResponse
+    {
+        if ($request->ajax()) {
+            $data = Category::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d/m/Y');
+                })
+                ->addColumn('updated_at', function ($row) {
+                    return $row->updated_at->format('d/m/Y');
+                })
+                ->addColumn('actions', function ($row) {
+                    $btn = "
+                    <a href='/dashboard/products/".$row->payment_id ."/edit' class='edit btn btn-primary btn-sm'>
+                        Düzenle
+                    </a>
+                    ";
+                    $btn .= "
+                    <form action='/dashboard/products/".$row->payment_id ."/delete' method='post' class='delete'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <input type='hidden' name='_token' value='" . csrf_token() . "'>
+                        <button type='submit' class='btn btn-danger btn-sm'>Sil</button>
+                    </form>
                     ";
                     return $btn;
                 })

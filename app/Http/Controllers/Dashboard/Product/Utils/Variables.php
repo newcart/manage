@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Dashboard\Product\Utils;
 
 class Variables {
-    public function Options() : Array {
-        $options = [
+    public static function ProductOptions() : array
+    {
+       return [
             [
                 "value" => "0",
                 "name" => "Tümü"
@@ -50,12 +51,11 @@ class Variables {
                 "name" => "Pasif Ürünler"
             ]
         ];
-
-        return $options;
     }
 
-    public function Columns() : Array {
-        $cols = [
+    public static function ProductColumns() : array
+    {
+        return [
             'product_id' => 'ID',
             'code' => 'Kod',
             'name' => 'Ad',
@@ -65,7 +65,15 @@ class Variables {
             'created_at' => 'Oluşturma Tarihi',
             'updated_at' => 'Güncelleme Tarihi',
         ];
+    }
 
-        return $cols;
+    public static function BrandColumns() : array {
+        return [
+            'brand_id' => 'ID',
+            'logo' => 'Logo',
+            'queue_no' => 'Sıra No',
+            'brand_name' => 'Marka Adı',
+            'status' => 'Durum'
+        ];
     }
 }

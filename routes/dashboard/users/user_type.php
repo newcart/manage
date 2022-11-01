@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DatatableController;
-use App\Http\Controllers\Dashboard\User\UserTypeController;
+use App\Http\Controllers\Dashboard\User\UserType\UserTypeController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'types'], function () {

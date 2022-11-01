@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DatatableController;
-use App\Http\Controllers\Dashboard\User\ServiceController;
+use App\Http\Controllers\Dashboard\User\Service\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'services'], function () {

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DatatableController;
-use App\Http\Controllers\Dashboard\Category\CategoryController;
+use App\Http\Controllers\Dashboard\Product\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'categories'], function () {

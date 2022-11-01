@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Dashboard\Product;
 use App\Helpers\Components;
 use App\Helpers\General;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\User;
+use App\Http\Controllers\Dashboard\Product\Utils\Variables;
+use App\Models\Product\Product;
+use App\Models\User\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 
 class ProductController extends Controller
 {
@@ -45,8 +45,8 @@ class ProductController extends Controller
             $data = [
                 'sidebar' => Components::SideBar('dashboard/products', 'admin'),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable( $this->class. "s", $vars->Columns()),
-                'options' => $vars->Options()
+                'datatable' => Components::createDatatable( $this->class. "s", Variables::ProductColumns()),
+                'options' => Variables::ProductOptions()
             ];
             return view('dashboard.products.index', $data);
         }
@@ -200,62 +200,4 @@ class ProductController extends Controller
             return redirect()->back();
         }
     }
-
-    public $options = [
-        [
-            "value" => "0",
-            "name" => "Tümü"
-        ],
-        [
-            "value" => "1",
-            "name" => "Stoklular"
-        ],
-        [
-            "value" => "2",
-            "name" => "Azalan Stoklar"
-        ],
-        [
-            "value" => "3",
-            "name" => "Biten Stoklar"
-        ],
-        [
-            "value" => "4",
-            "name" => "Fiyatı 0 TL"
-        ],
-        [
-            "value" => "5",
-            "name" => "Kategorisiz"
-        ],
-        [
-            "value" => "6",
-            "name" => "Markasız"
-        ],
-        [
-            "value" => "7",
-            "name" => "Varyantsız"
-        ],
-        [
-            "value" => "8",
-            "name" => "Son 24 Saatte Harekete Giren Ürünler"
-        ],
-        [
-            "value" => "9",
-            "name" => "Son 24 Saatte Tükenenler"
-        ],
-        [
-            "value" => "10",
-            "name" => "Pasif Ürünler"
-        ]
-    ];
-
-    public $cols = [
-        'product_id' => 'ID',
-        'code' => 'Kod',
-        'name' => 'Ad',
-        'brand' => 'Marka',
-        'tax' => 'Vergi',
-        'price' => 'Fiyat',
-        'created_at' => 'Oluşturma Tarihi',
-        'updated_at' => 'Güncelleme Tarihi',
-    ];
 }

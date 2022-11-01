@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Components;
 use App\Helpers\General;
-use App\Models\Brand;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\Product\Brand\Utils\Variables;
+use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
-use App\Models\User;
+use App\Models\Product\Brand;
+use App\Models\User\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class BrandController extends Controller
 {
@@ -31,16 +34,15 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function index()
+    public function index() : Application|Factory|View|RedirectResponse
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
-            $vars = new Variables();
             $data = [
                 'sidebar' => Components::SideBar('dashboard/products', 'admin'),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable($this->class . "s", $vars->Columns())
+                'datatable' => Components::createDatatable($this->class . "s", Variables::BrandColumns())
             ];
 
             return view('dashboard.brands.index', $data);
@@ -55,9 +57,9 @@ class BrandController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function create()
+    public function create() : Application|Factory|View|RedirectResponse
     {
         if(User::thisUserHasPermission($this->method, $this->class))
         {
@@ -77,8 +79,8 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBrandRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreBrandRequest $request
+     * @return Application|Factory|View|RedirectResponse
      */
     public function store(StoreBrandRequest $request)
     {
@@ -88,7 +90,7 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Product\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function show(Brand $brand)
@@ -99,7 +101,7 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Product\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function edit(Brand $brand)
@@ -111,7 +113,7 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateBrandRequest  $request
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Product\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
@@ -122,7 +124,7 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Product\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function destroy(Brand $brand)

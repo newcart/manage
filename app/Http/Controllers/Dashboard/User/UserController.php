@@ -6,8 +6,8 @@ use App\Helpers\Components;
 use App\Helpers\General;
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use GuzzleHttp\Psr7\Request;
+use App\Http\Controllers\Dashboard\User\Utils\Variables;
+use App\Models\User\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -36,23 +36,12 @@ class UserController extends Controller
      */
     public function index(): View|Factory|RedirectResponse|Application
     {
-        $host = request()->getHttpHost();
-        $cols = [
-            'user_id' => 'ID',
-            'name' => 'Kullanıcı Adı',
-            'firstname' => 'Ad',
-            'lastname' => 'Soyad',
-            'email' => 'E-Posta',
-            'gsm' => 'Telefon Numarası',
-            'status' => 'Durum',
-            'created_at' => 'Oluşturma Tarihi',
-            'updated_at' => 'Güncelleme Tarihi',
-        ];
+
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
                 'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
                 'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable( $this->class. "s", $cols)
+                'datatable' => Components::createDatatable( $this->class. "s", Variables::UserColumns())
             ];
             return view('dashboard.users.index', $data);
         } else {
