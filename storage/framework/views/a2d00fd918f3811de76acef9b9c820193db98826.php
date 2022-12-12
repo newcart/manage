@@ -8,4 +8,4 @@
             </select>
         </div>
     </div>
-<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/dashboard/products/components/productType.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/dashboard/products/_partials/_productType.blade.php ENDPATH**/ ?>

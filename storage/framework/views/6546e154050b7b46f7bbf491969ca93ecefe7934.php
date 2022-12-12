@@ -26,7 +26,7 @@
         <button class="btn3 me-2">QR Kod</button>
     </div>
 
-    <?php echo $__env->make('dashboard.products.components.productType', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('dashboard.products._partials.productType', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $datatable['html']; ?>
 

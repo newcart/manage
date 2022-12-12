@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('assets/css/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/flatpickr.min.css') }}">
 @endsection
 
 @section('title', 'Ürünler - Akıllıphone')
@@ -14,7 +14,7 @@
                 Nethesap'tan Yeni Ürünleri Çek
             </button>
         </a>
-        <a href="{{ route('panel.products.new') }}">
+        <a href="{{ route('dashboard.products.new') }}">
             <button class="btn2 me-2">
                 Yeni Ürün Ekle
             </button>
@@ -28,7 +28,7 @@
         <button class="btn3 me-2">QR Kod</button>
     </div>
 
-    @include('dashboard.products.components.productType')
+    @include('dashboard.products._partials._productType')
 
     {!! $datatable['html'] !!}
 @endsection

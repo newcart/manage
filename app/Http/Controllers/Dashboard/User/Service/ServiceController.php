@@ -49,9 +49,9 @@ class ServiceController extends Controller
         if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable( "users/services", $cols)
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar(),
+                'datatable' => Components\DatatableComponent::createDatatable( "users/services", $cols)
             ];
             return view('dashboard.users.service.index', $data);
         }
@@ -71,8 +71,8 @@ class ServiceController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar()
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar()
             ];
             return view('dashboard.users.service.create', $data);
         } else {
@@ -99,7 +99,7 @@ class ServiceController extends Controller
 
             if ($user_type) {
                 notify()->success('Kullanıcı tipi başarıyla oluşturuldu.', 'Başarılı');
-                return redirect()->route('panel.users.service');
+                return redirect()->route('dashboard.users.services');
             } else {
                 notify()->error('Kullanıcı tipi oluşturulurken bir hata oluştu.', 'Hata');
                 return redirect()->back();
@@ -121,8 +121,8 @@ class ServiceController extends Controller
 
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar(),
                 'service' => Service::findOrFail($service->service_id)
             ];
             return view('dashboard.users.service.edit', $data);
@@ -146,7 +146,7 @@ class ServiceController extends Controller
             $updatedService = Service::findOrFail($service->service_id)->update($request->validated());
             if ($updatedService) {
                 notify()->success('Kullanıcı tipi başarıyla güncellendi.', 'Başarılı');
-                return redirect()->route('panel.users.service');
+                return redirect()->route('dashboard.users.services');
             } else {
                 notify()->error('Kullanıcı tipi güncelleme sırasında bir hata oluştu.', 'Hata');
                 return redirect()->back();
@@ -168,7 +168,7 @@ class ServiceController extends Controller
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $service->delete();
             notify()->success('Kullanıcı tipi başarıyla silindi.', 'Başarılı');
-            return redirect()->route('panel.users.service');
+            return redirect()->route('dashboard.users.services');
         } else {
             notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
             return redirect()->back();

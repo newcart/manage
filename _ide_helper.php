@@ -2452,7 +2452,7 @@
                         $instance->component($class, $alias, $prefix);
         }
                     /**
-         * Register an array of class-based components.
+         * Register an array of class-based _partials.
          *
          * @param array $components
          * @param string $prefix

@@ -27,7 +27,10 @@ class ServiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (User::userHasPermission('can_create', 'service') || User::userHasPermission('can_edit', 'service')) {
+        if (
+            User::thisUserHasPermission('can_create', 'service') ||
+            User::thisUserHasPermission('can_edit', 'service')
+        ) {
             return true;
         } else {
             return false;
@@ -39,7 +42,7 @@ class ServiceRequest extends FormRequest
      *
      * @var boolean
      */
-    protected $stopOnFirstFailure = true;
+    protected $stopOnFirstFailure = false;
 
     /**
      * Get the validation rules that apply to the request.

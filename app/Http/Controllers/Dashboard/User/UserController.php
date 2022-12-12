@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard\User;
 
-use App\Helpers\Components;
+use App\Helpers\Components\DashboardComponents;
+use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
@@ -39,9 +40,9 @@ class UserController extends Controller
 
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable( $this->class. "s", Variables::UserColumns())
+                'sidebar' => DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => DashboardComponents::Navbar(),
+                'datatable' => DatatableComponent::createDatatable( $this->class. "s", Variables::UserColumns())
             ];
             return view('dashboard.users.index', $data);
         } else {
@@ -58,8 +59,8 @@ class UserController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar()
+                'sidebar' => DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => DashboardComponents::Navbar()
             ];
             return view('dashboard.users.create', $data);
         } else {
@@ -77,8 +78,8 @@ class UserController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
+                'sidebar' => DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => DashboardComponents::Navbar(),
                 'user' => User::find($id)
             ];
             return view('dashboard.users.edit', $data);
@@ -97,8 +98,8 @@ class UserController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
+                'sidebar' => DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => DashboardComponents::Navbar(),
                 'user' => User::find($id)
             ];
             return view('dashboard.users.show', $data);

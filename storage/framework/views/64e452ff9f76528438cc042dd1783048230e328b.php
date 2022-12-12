@@ -7,4 +7,4 @@
 
     </a>
 </div>
-<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/components/button.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/_partials/button.blade.php ENDPATH**/ ?>

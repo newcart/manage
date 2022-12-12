@@ -6,4 +6,4 @@
         <option value="3">Value</option>
     </select>
 </div>
-<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/components/select.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\resources\views/_partials/select.blade.php ENDPATH**/ ?>

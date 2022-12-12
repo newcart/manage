@@ -50,9 +50,9 @@ class UserTypeController extends Controller
 
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable( "users/types", $cols),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar(),
+                'datatable' => Components\DatatableComponent::createDatatable( "users/types", $cols),
             ];
             return view('dashboard.users.type.index', $data);
         } else {
@@ -69,8 +69,8 @@ class UserTypeController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar(),
                 'services' => Service::all()
             ];
             return view('dashboard.users.type.create', $data);
@@ -163,8 +163,8 @@ class UserTypeController extends Controller
             }
 
             $data = [
-                'sidebar' => Components::SideBar('dashboard/users', UserHelper::getType()->code),
-                'navbar' => Components::Navbar(),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/users', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar(),
                 'type' => UserType::findOrFail($type->type_id),
                 'services' => Service::all(),
                 'roles' => $roles
@@ -186,7 +186,7 @@ class UserTypeController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $val = $request->validated();
-            $updatedType = UserType::findOrFail($type->type_id)->update([
+            $updatedType = UserType::findOrNew($type->type_id)->update([
                 'code' => $val['code'],
                 'name' => $val['name'],
                 'status' => $val['status'],
@@ -208,7 +208,7 @@ class UserTypeController extends Controller
 
             if ($updatedType) {
                 notify()->success('Kullanıcı tipi başarıyla güncellendi.', 'Başarılı');
-                return redirect()->route('panel.users.types');
+                return redirect()->route('dashboard.users.types');
             } else {
                 notify()->error('Kullanıcı tipi güncellenirken bir hata oluştu.', 'Hata');
                 return redirect()->back();

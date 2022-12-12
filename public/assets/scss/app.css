@@ -12042,8 +12042,8 @@ body.offcanvas-active {
           align-items: center;
   -webkit-column-gap: 14px;
           column-gap: 14px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  /*-ms-flex-wrap: wrap;*/
+  /*    flex-wrap: wrap;*/
 }
 
 .product-list .product-list-top .title {
@@ -12904,5 +12904,29 @@ label {
     color: #808080;
     margin: 10px 0px;
   }
+}
+
+.open .dropdown-menu{
+    display: block;
+}
+.open .arrow{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.dropdown-menu > li {
+    transition: .3s ease all;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-menu > li:hover {
+    background: #ebebeb;
 }
 /*# sourceMappingURL=dash.css.map */

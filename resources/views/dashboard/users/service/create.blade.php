@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Yeni Servis Ekle</h1>
-    <form action="{{ route('panel.users.services.create') }}" method="POST" class="mt-3">
+    <form action="{{ route('dashboard.users.services.create') }}" method="POST" class="mt-3">
         @csrf
         <div class="mb-3">
             <label for="code" class="form-label">Servis kodu</label>

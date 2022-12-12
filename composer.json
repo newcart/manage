@@ -12,7 +12,8 @@
         "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.7",
         "mckenziearts/laravel-notify": "^2.3",
-        "yajra/laravel-datatables": "9.0"
+        "yajra/laravel-datatables": "9.0",
+      "ext-simplexml": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

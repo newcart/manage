@@ -1,23 +1,23 @@
-@extends('layouts.app')
+@extends('resources.views.layouts.app')
 
 @section('title', $type->name .' | Kullanıcı Tipi Düzenle - Akıllıphone')
 
 @section('content')
     <h1>{{ $type->name }} kullanıcı tipini düzenliyorsunuz</h1>
-    <form action="{{ route('panel.users.types.update', $type) }}" method="POST" class="mt-3">
+    <form action="{{ route('dashboard.users.types.update', $type) }}" method="POST" class="mt-3">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$type->type_id}}">
         <div class="mb-3">
-            <label for="code" class="form-label">Ürün kodu</label>
+            <label for="code" class="form-label">Yetki kodu</label>
             <input type="text" class="form-control" placeholder="brand-model" name="code" value="{{ $type->code }}">
         </div>
         <div class="mb-3">
-            <label for="name" class="form-label">Ürün Adı</label>
+            <label for="name" class="form-label">Yetki Adı</label>
             <input type="text" class="form-control" name="name" value="{{ $type->name }}">
         </div>
         <div class="mb-3">
-            <p>Ürün Durumu</p>
+            <p>Yetki Durumu</p>
             <label class="switch">
                 <input type="checkbox" name="status" checked="{{ $type->status }}">
                 <span class="slider round"></span>

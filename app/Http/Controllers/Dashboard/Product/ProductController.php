@@ -39,22 +39,19 @@ class ProductController extends Controller
     public function index(): View|Factory|Application|RedirectResponse
     {
 
-        if(User::thisUserHasPermission($this->method, $this->class))
-        {
-            $vars = new Variables();
-            $data = [
-                'sidebar' => Components::SideBar('dashboard/products', 'admin'),
-                'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable( $this->class. "s", Variables::ProductColumns()),
-                'options' => Variables::ProductOptions()
-            ];
-            return view('dashboard.products.index', $data);
-        }
-        else
+        if (!User::thisUserHasPermission($this->method, $this->class))
         {
             notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
             return redirect()->back();
         }
+
+        $data = [
+            'sidebar' => Components\DashboardComponents::SideBar('dashboard/products', 'admin'),
+            'navbar' => Components\DashboardComponents::Navbar(),
+            'datatable' => Components\DatatableComponent::createDatatable( $this->class. "s", Variables::ProductColumns()),
+            'options' => Variables::ProductOptions()
+        ];
+        return view('dashboard.products.index', $data);
     }
 
     /**
@@ -64,19 +61,17 @@ class ProductController extends Controller
      */
     public function create(): View|Factory|RedirectResponse|Application
     {
-        if(User::thisUserHasPermission($this->method, $this->class))
-        {
-            $data = [
-                'sidebar' => Components::SideBar('dashboard', 'admin'),
-                'navbar' => Components::Navbar(),
-            ];
-            return view('dashboard.products.create', $data);
-        }
-        else
+        if(!User::thisUserHasPermission($this->method, $this->class))
         {
             notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
             return redirect()->back();
         }
+
+        $data = [
+            'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+            'navbar' => Components\DashboardComponents::Navbar(),
+        ];
+        return view('dashboard.products.create', $data);
     }
 
     /**
@@ -132,8 +127,8 @@ class ProductController extends Controller
         if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
-                'sidebar' => Components::SideBar('dashboard', 'admin'),
-                'navbar' => Components::Navbar(),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+                'navbar' => Components\DashboardComponents::Navbar(),
                 'product' => $product
             ];
             return view('dashboard.products.edit', $data);

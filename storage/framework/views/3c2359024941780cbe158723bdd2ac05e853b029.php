@@ -20,4 +20,4 @@
         timeout: "<?php echo e(config('notify.timeout')); ?>",
     }
 </script>
-<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\vendor\mckenziearts\laravel-notify\src/../resources/views/components/notify.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\x\Desktop\Folders\AkilliPhone\panel\vendor\mckenziearts\laravel-notify\src/../resources/views/_partials/notify.blade.php ENDPATH**/ ?>

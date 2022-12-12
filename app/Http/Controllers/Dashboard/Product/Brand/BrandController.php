@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard\Product\Brand;
 
 use App\Helpers\Components;
 use App\Helpers\General;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
@@ -40,12 +41,12 @@ class BrandController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components::SideBar('dashboard/products', 'admin'),
-                'navbar' => Components::Navbar(),
-                'datatable' => Components::createDatatable($this->class . "s", Variables::BrandColumns())
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/products', 'admin'),
+                'navbar' => Components\DashboardComponents::Navbar(),
+                'datatable' => Components\DatatableComponent::createDatatable($this->class . "s", Variables::BrandColumns())
             ];
 
-            return view('dashboard.brands.index', $data);
+            return view('dashboard.products.brands.index', $data);
         }
         else
         {
@@ -64,10 +65,10 @@ class BrandController extends Controller
         if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
-                'sidebar' => Components::SideBar('dashboard', 'admin'),
-                'navbar' => Components::Navbar(),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+                'navbar' => Components\DashboardComponents::Navbar(),
             ];
-            return view('dashboard.brands.create', $data);
+            return view('dashboard.products.brands.create', $data);
         }
         else
         {

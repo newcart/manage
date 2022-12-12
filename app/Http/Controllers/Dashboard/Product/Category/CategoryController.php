@@ -3,16 +3,34 @@
 namespace App\Http\Controllers\Dashboard\Product\Category;
 
 use App\Helpers\Components;
+use App\Helpers\General;
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Product\Category;
+use App\Models\User\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
+    //service to be validated
+    protected string $class;
+
+    //permission to be validated
+    protected string $method;
+
+    /**
+     * Sets class and method for every method in this class for checking permissions.
+     */
+    public function __construct()
+    {
+        $this->class = General::getClass();
+        $this->method = General::getMethod();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,22 +47,34 @@ class CategoryController extends Controller
         ];
 
         $data = [
-            'sidebar' => Components::SideBar('dashboard/categories', UserHelper::getType()->code),
-            'navbar' => Components::Navbar(),
-            'datatable' => Components::createDatatable("categories", $cols),
+            'sidebar' => Components\DashboardComponents::SideBar('dashboard/categories', UserHelper::getType()->code),
+            'navbar' => Components\DashboardComponents::Navbar(),
+            'datatable' => Components\DatatableComponent::createDatatable("categories", $cols),
         ];
 
-        return view('dashboard.categories.index', $data);
+        return view('dashboard.products.categories.index', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function create(): Response
+    public function create(): Application|Factory|View|RedirectResponse
     {
-        //
+        if(User::thisUserHasPermission($this->method, $this->class))
+        {
+            $data = [
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+                'navbar' => Components\DashboardComponents::Navbar(),
+            ];
+            return view('dashboard.products.categories.create', $data);
+        }
+        else
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
     }
 
     /**

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap5.css') }}">
@@ -21,21 +21,40 @@
 </head>
 
 <body>
-    <x:notify-messages />
+<x:notify-messages/>
 
-    {!! $navbar !!}
+{!! $navbar !!}
 
-    <main>
-        {!! $sidebar !!}
-        <section class="main-content">
+<main>
+    {!! $sidebar !!}
+    <section class="main-content">
+        <div class="container-xxl">
             @yield('content')
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-    @yield('scripts')
-    @include('sections.NotifyJs')
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+@yield('scripts')
+<script>
+    $(document).ready(function () {
+        $('.notify').fadeIn().delay(10000).fadeOut();
+    });
+</script>
+
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $("[data-toggle='dropdown']").click(function (e) {
+            $(this).parents(".dropdown").toggleClass("open");
+            e.stopPropagation();
+        });
+
+        $("html").click(function () {
+            $(".open").removeClass("open");
+        });
+    });
+</script>
 </body>
 
 </html>
