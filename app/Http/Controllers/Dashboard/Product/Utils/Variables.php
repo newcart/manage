@@ -97,8 +97,7 @@ class Variables {
             'color_name' => 'Renk Adı',
             'color_code' => 'Renk Kodu',
             'color_group' => 'Renk Grubu',
-            'gg_color' => 'Gittigidiyor Rengi',
-            'actions' => 'Eylemler'
+            'gg_color' => 'Gittigidiyor Rengi'
         ];
     }
 
@@ -108,8 +107,7 @@ class Variables {
     public static function UnitColumns() : array
     {
         return [
-            'unit_name' => 'Birim Adı',
-            'actions' => 'Eylemler'
+            'unit_name' => 'Birim Adı'
         ];
     }
 
@@ -121,8 +119,7 @@ class Variables {
         return [
             'queue_no' => 'Sıra No',
             'tax_name' => 'Vergi Adı',
-            'tax_percentage' => 'Vergi Oranı',
-            'actions' => 'Eylemler'
+            'tax_percentage' => 'Vergi Oranı'
         ];
     }
 
@@ -149,8 +146,7 @@ class Variables {
         return [
             'queue_no' => 'Sıra No.',
             'spec_group_name' => 'Adı',
-            'spec_group_spec' => 'Alt Özellikler',
-            'actions' => 'Eylemler'
+            'spec_group_spec' => 'Alt Özellikler'
         ];
     }
 
@@ -162,8 +158,7 @@ class Variables {
         return [
             'queue_no' => 'Sıra No.',
             'spec_set_name' => 'Adı',
-            'spec_set_spec' => 'Alt Ürün Setleri',
-            'actions' => 'Eylemler'
+            'spec_set_spec' => 'Alt Ürün Setleri'
         ];
     }
 
@@ -177,8 +172,7 @@ class Variables {
             'fullname' => 'Ad Soyad',
             'product_name' => 'Ürün Adı',
             'question' => 'Soru',
-            'answer' => 'Yanıt',
-            'actions' => 'Eylemler'
+            'answer' => 'Yanıt'
         ];
     }
 
@@ -192,8 +186,7 @@ class Variables {
             'fullname' => 'Ad Soyad',
             'product_name' => 'Ürün Adı',
             'review' => 'İnceleme',
-            'answer' => 'Yanıt',
-            'actions' => 'Eylemler'
+            'answer' => 'Yanıt'
         ];
     }
 
@@ -220,8 +213,7 @@ class Variables {
         return [
             'queue_no' => 'Sıra No.',
             'provider_name' => 'Tedarikçi Adı',
-            'price_multiplier' => 'Fiyat Çarpanı',
-            'actions' => 'Eylemler'
+            'price_multiplier' => 'Fiyat Çarpanı'
         ];
     }
 }

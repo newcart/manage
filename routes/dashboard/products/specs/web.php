@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Product\Spec\SpecGroup\SpecGroupController;
+
 Route::group(['prefix' => 'specs'], function (){
 
-    Route::get('/', fn() => view('dashboard.specs.index'))->name('specs');
+    Route::get('/', [SpecGroupController::class, 'index'])->name('specs');
 
    Route::name('specs.')->group(function() {
 

@@ -68,7 +68,7 @@ return [
                 ],
                 [
                     'title' => 'Vergi Tanımları',
-                    'url' => '/dashboard/product/tax'
+                    'url' => '/dashboard/products/tax'
                 ],
                 [
                     'title' => 'Ürün Birimleri',
@@ -117,7 +117,7 @@ return [
                 ],
                 [
                     'title' => 'Yetki Yönetimi',
-                    'url' => '/dashboard/users/permissions'
+                    'url' => '/dashboard/users/types'
                 ]
             ],
         ],

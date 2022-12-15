@@ -1,4 +1,4 @@
-@extends('resources.views.layouts.app')
+@extends('layouts.app')
 
 @section('title', $type->name .' | Kullanıcı Tipi Düzenle - Akıllıphone')
 

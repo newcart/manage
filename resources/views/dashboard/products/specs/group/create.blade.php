@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Yeni Özellik Grubu Ekle</h1>
-    <form action="{{ route('dashboard.spec.group.create') }}" method="POST" class="mt-3">
+    <form action="{{ route('dashboard.products.specs.spec_groups.store') }}" method="POST" class="mt-3">
         @csrf
         <div>
             <div class="line">

@@ -8,7 +8,7 @@ Route::group(['prefix' => 'colors'], routes: function () {
 
     Route::get('/', [ColorController::class, 'index'])->name('colors');
 
-    Route::name('colors')->group(callback: function () {
+    Route::name('colors.')->group(callback: function () {
 
         Route::get('/create', [ColorController::class, 'create'])->name('create');
         Route::post('/store', [ColorController::class, 'store'])->name('store');

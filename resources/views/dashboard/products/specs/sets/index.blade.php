@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Kullanıcılar - Akıllıphone')
+@section('title', 'Özellik Setleri - Akıllıphone')
 
 @section('content')
-    <a href="{{ route('panel.specs.sets.new') }}" class="btn btn-primary">
+    <a href="{{ route('dashboard.products.specs.spec_sets.create') }}" class="btn btn-primary">
         Yeni Özellik Grubu Ekle
     </a>
 

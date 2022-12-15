@@ -3,7 +3,7 @@
         <div class="product-list-top justify-content-center justify-content-xxl-start" style="row-gap:20px;">
             <div class="title">Siparişler </div>
             <div class="get-products">
-                <a href="{{ route('panel.orders.new') }}">
+                <a href="{{ route('dashboard.orders.new') }}">
                     <img src="{{ asset('assets/images/new-order.svg') }}" alt="get product">
                     Yeni Sipariş Ekle
                 </a>

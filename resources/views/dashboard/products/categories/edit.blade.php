@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Kategori ekle</button>
+        <button type="submit" class="btn btn-primary">Kategoriyi kaydet</button>
     </form>
 @endsection
 

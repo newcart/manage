@@ -50,7 +50,7 @@ class DatatableController extends Controller
                         >
                         <li>
                             <div class='dropdown-item'>
-                                <a href='/dashboard/users/types/" . $row->user_id . "/edit' class='edit btn btn-primary btn-sm'>
+                                <a href='/dashboard/users/" . $row->user_id . "/edit' class='edit btn btn-primary btn-sm'>
                                     Düzenle
                                 </a>
                             </div>

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', $user->username . ' | Kullanıcı Düzenle - Akıllıphone')
+@section('title', $user->firstname . ' '. $user->lastname  . ' | Kullanıcı Düzenle - Akıllıphone')
 
 @section('content')
-    <h1>{{ $user->username }} adlı kullanıcıyı düzenliyorsunuz</h1>
-    <form action="{{ route('panel.users.update', $user) }}" method="POST" class="mt-3">
+    <h1>{{ $user->name }} adlı kullanıcıyı düzenliyorsunuz</h1>
+    <form action="{{ route('dashboard.users.update', $user) }}" method="POST" class="mt-3">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$user->type_id}}">
@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Ürün Adı</label>
-            <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+            <input type="text" class="form-control" name="name" value="{{ $user->firstname }}">
         </div>
         <div class="mb-3">
             <p>Ürün Durumu</p>

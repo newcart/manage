@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Marka ekle</button>
+        <button type="submit" class="btn btn-primary">Markayı kaydet</button>
     </form>
 @endsection
 

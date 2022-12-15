@@ -3,7 +3,7 @@
 @section('title', 'Renk Setleri - Akıllıphone')
 
 @section('content')
-    <a href="{{ route('dashboard.colors.new') }}" class="btn btn-primary">
+    <a href="{{ route('dashboard.products.colors.create') }}" class="btn btn-primary">
         Yeni Renk Ekle
     </a>
 

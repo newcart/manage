@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Yeni Özellik Seti Ekle</h1>
-    <form action="{{ route('dashboard.spec.sets.create') }}" method="POST" class="mt-3">
+    <form action="{{ route('dashboard.products.specs.spec_sets.store') }}" method="POST" class="mt-3">
         @csrf
         <div>
             <div class="line">

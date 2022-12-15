@@ -3,7 +3,7 @@
 @section('title', 'Kullanıcılar - Akıllıphone')
 
 @section('content')
-    <a href="{{ route('panel.users.new') }}" class="btn btn-primary">
+    <a href="{{ route('dashboard.users.new') }}" class="btn btn-primary">
         Yeni Kullanıcı Ekle
     </a>
 
