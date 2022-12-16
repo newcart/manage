@@ -91,7 +91,7 @@ class ServiceController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $validated = $request->validated();
-            $user_type = UserType::create([
+            $user_type = Service::create([
                 'code' => $validated['code'],
                 'name' => $validated['name'],
                 'status' => $validated['status'] ? 1 : 0

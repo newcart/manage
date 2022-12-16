@@ -3,9 +3,9 @@
 @section('title', 'Stok Uyarı İstekleri - Akıllıphone')
 
 @section('content')
-    {{ $datatable['html'] }}
+    {!! $datatable['html'] !!}
 @endsection
 
 @section('scripts')
-    {{ $datatable['js'] }}
+    {!! $datatable['js'] !!}
 @endsection

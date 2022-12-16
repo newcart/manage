@@ -3,7 +3,7 @@
 use App\Http\Controllers\Dashboard\DatatableController;
 use App\Http\Controllers\Dashboard\Product\Reviews\ReviewController;
 
-Route::prefix('reviews')->group(callback: function () {
+Route::prefix('product-reviews')->group(callback: function () {
 
     Route::get('/', [ReviewController::class, 'index'])->name('reviews');
 

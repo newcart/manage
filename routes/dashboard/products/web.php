@@ -30,6 +30,7 @@ Route::group(['prefix' => 'products'], routes: function () {
         include 'stock-warning-requests/web.php';
         include 'tax/web.php';
         include 'units/web.php';
+        include 'providers/web.php';
 
     });
 });
@@ -37,5 +38,3 @@ Route::group(['prefix' => 'products'], routes: function () {
 include 'brands/web.php';
 
 include 'category/web.php';
-
-include 'manufacturers/web.php';

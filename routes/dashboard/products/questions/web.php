@@ -3,7 +3,7 @@
 use App\Http\Controllers\Dashboard\DatatableController;
 use App\Http\Controllers\Dashboard\Product\Question\QuestionController;
 
-Route::prefix('questions')->group(callback: function () {
+Route::prefix('product-questions')->group(callback: function () {
 
     Route::get('/', [QuestionController::class, 'index'])->name('questions');
 

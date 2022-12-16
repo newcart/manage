@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<x:notify-messages/>
+<x-notify-messages/>
 
 {!! $navbar !!}
 

@@ -72,12 +72,13 @@
 
 
 @section('scripts')
-            <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
-            <script>
-                $('.js-tilt').tilt({
-                    glare: true,
-                    maxGlare: .5
-                })
-            </script>
+        <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
+        <script src="{{ asset('assets/js/tilt.jquery.min.js') }}"></script>
+        <script>
+            $('.js-tilt').tilt({
+                glare: true,
+                maxGlare: .5
+            })
+        </script>
     {!! $pieChartScript !!}
 @endsection
