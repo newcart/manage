@@ -19,7 +19,7 @@ Route::group(['prefix' => 'users'], function () {
         Route::get('/table', [DatatableController::class, 'usersTable'])->name('table');
 
 
-        include 'user_type.php';
-        include 'services.php';
+        include 'user-type/web.php';
+        include 'services/web.php';
     });
 });

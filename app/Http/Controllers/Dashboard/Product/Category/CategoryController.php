@@ -65,7 +65,7 @@ class CategoryController extends Controller
         if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
-                'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', UserHelper::getType()->code),
                 'navbar' => Components\DashboardComponents::Navbar(),
             ];
             return view('dashboard.products.categories.create', $data);
@@ -102,11 +102,23 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Category $category
-     * @return Response
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function edit(Category $category): Response
+    public function edit(Category $category): Application|Factory|View|RedirectResponse
     {
-        //
+        if(User::thisUserHasPermission($this->method, $this->class))
+        {
+            $data = [
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', UserHelper::getType()->code),
+                'navbar' => Components\DashboardComponents::Navbar(),
+            ];
+            return view('dashboard.products.categories.edit', $data);
+        }
+        else
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
     }
 
     /**

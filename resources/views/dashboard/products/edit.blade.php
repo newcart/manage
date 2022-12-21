@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Ürün Ekle - Akıllıphone')
+@section('title', $product->name . ' Ürününü Düzenle - Akıllıphone')
 
 @section('content')
     <h1>Yeni Ürün ekle</h1>

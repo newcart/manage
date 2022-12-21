@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Color;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -43,7 +44,7 @@ class ColorController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/color', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/color', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable($this->class. "s", Variables::ColorColumns())
         ];
@@ -60,10 +61,26 @@ class ColorController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/color', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/color', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar()
         ];
 
         return view('dashboard.products.colors.create', $data);
+    }
+
+    public function edit() : Application|Factory|View|RedirectResponse
+    {
+        if (!User::thisUserHasPermission($this->method, $this->class))
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
+
+        $data = [
+            'sidebar' => DashboardComponents::SideBar('dashboard/color', UserHelper::getType()->code),
+            'navbar' => DashboardComponents::Navbar()
+        ];
+
+        return view('dashboard.products.colors.edit', $data);
     }
 }

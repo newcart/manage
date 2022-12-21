@@ -77,7 +77,8 @@ class Variables {
     /**
      * @return string[]
      */
-    public static function BrandColumns() : array {
+    public static function BrandColumns() : array
+    {
         return [
             'brand_id' => 'ID',
             'logo' => 'Logo',

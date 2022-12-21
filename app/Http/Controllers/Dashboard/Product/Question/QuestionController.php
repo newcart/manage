@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Question;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -45,7 +46,7 @@ class QuestionController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/questions', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/questions', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable( $this->class. "s", Variables::ProductQuestionsColumns())
         ];

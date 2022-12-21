@@ -98,10 +98,10 @@ class ServiceController extends Controller
             ]);
 
             if ($user_type) {
-                notify()->success('Kullanıcı tipi başarıyla oluşturuldu.', 'Başarılı');
+                notify()->success('Servis başarıyla oluşturuldu.', 'Başarılı');
                 return redirect()->route('dashboard.users.services');
             } else {
-                notify()->error('Kullanıcı tipi oluşturulurken bir hata oluştu.', 'Hata');
+                notify()->error('Servis oluşturulurken bir hata oluştu.', 'Hata');
                 return redirect()->back();
             }
         } else {
@@ -145,10 +145,10 @@ class ServiceController extends Controller
         {
             $updatedService = Service::findOrFail($service->service_id)->update($request->validated());
             if ($updatedService) {
-                notify()->success('Kullanıcı tipi başarıyla güncellendi.', 'Başarılı');
+                notify()->success('Servis başarıyla güncellendi.', 'Başarılı');
                 return redirect()->route('dashboard.users.services');
             } else {
-                notify()->error('Kullanıcı tipi güncelleme sırasında bir hata oluştu.', 'Hata');
+                notify()->error('Servis güncelleme sırasında bir hata oluştu.', 'Hata');
                 return redirect()->back();
             }
         } else {
@@ -167,7 +167,7 @@ class ServiceController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $service->delete();
-            notify()->success('Kullanıcı tipi başarıyla silindi.', 'Başarılı');
+            notify()->success('Servis başarıyla silindi.', 'Başarılı');
             return redirect()->route('dashboard.users.services');
         } else {
             notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');

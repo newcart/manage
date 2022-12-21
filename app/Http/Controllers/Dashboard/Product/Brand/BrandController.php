@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard\Product\Brand;
 
 use App\Helpers\Components;
+use App\Helpers\Components\DashboardComponents;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Http\Requests\StoreBrandRequest;
@@ -41,7 +43,7 @@ class BrandController extends Controller
     {
         if (User::thisUserHasPermission($this->method, $this->class)) {
             $data = [
-                'sidebar' => Components\DashboardComponents::SideBar('dashboard/products', 'admin'),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard/products', UserHelper::getType()->code),
                 'navbar' => Components\DashboardComponents::Navbar(),
                 'datatable' => Components\DatatableComponent::createDatatable($this->class . "s", Variables::BrandColumns())
             ];
@@ -65,7 +67,7 @@ class BrandController extends Controller
         if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
-                'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', UserHelper::getType()->code),
                 'navbar' => Components\DashboardComponents::Navbar(),
             ];
             return view('dashboard.products.brands.create', $data);
@@ -102,12 +104,23 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product\Brand  $brand
-     * @return \Illuminate\Http\Response
+     * @param  Brand  $brand
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function edit(Brand $brand)
+    public function edit(Brand $brand) : Application|Factory|View|RedirectResponse
     {
-        //
+        if (!User::thisUserHasPermission($this->method, $this->class))
+        {
+            notify()->warning("Bu işlemi yapmaya yetkiniz bulunmamaktadır.", "Yetersiz Yetki");
+            return redirect()->back();
+        }
+
+        $data = [
+            "sidebar" => DashboardComponents::SideBar("dashboard/franchise", UserHelper::getType()->code),
+            "navbar" => DashboardComponents::Navbar()
+        ];
+
+        return \view('dashboard.products.brands.edit', $data);
     }
 
     /**

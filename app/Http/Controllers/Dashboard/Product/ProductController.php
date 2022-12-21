@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Product;
 
 use App\Helpers\Components;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\Product\Product;
@@ -46,7 +47,7 @@ class ProductController extends Controller
         }
 
         $data = [
-            'sidebar' => Components\DashboardComponents::SideBar('dashboard/products', 'admin'),
+            'sidebar' => Components\DashboardComponents::SideBar('dashboard/products', UserHelper::getType()->code),
             'navbar' => Components\DashboardComponents::Navbar(),
             'datatable' => Components\DatatableComponent::createDatatable( $this->class. "s", Variables::ProductColumns()),
             'options' => Variables::ProductOptions()
@@ -68,7 +69,7 @@ class ProductController extends Controller
         }
 
         $data = [
-            'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+            'sidebar' => Components\DashboardComponents::SideBar('dashboard', UserHelper::getType()->code),
             'navbar' => Components\DashboardComponents::Navbar(),
         ];
         return view('dashboard.products.create', $data);
@@ -127,7 +128,7 @@ class ProductController extends Controller
         if(User::thisUserHasPermission($this->method, $this->class))
         {
             $data = [
-                'sidebar' => Components\DashboardComponents::SideBar('dashboard', 'admin'),
+                'sidebar' => Components\DashboardComponents::SideBar('dashboard', UserHelper::getType()->code),
                 'navbar' => Components\DashboardComponents::Navbar(),
                 'product' => $product
             ];

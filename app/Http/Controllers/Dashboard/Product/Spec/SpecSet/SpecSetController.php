@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Spec\SpecSet;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -45,7 +46,7 @@ class SpecSetController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/sets', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/sets', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable( "specs/sets", Variables::SpecSetColumns())
         ];
@@ -66,7 +67,7 @@ class SpecSetController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/sets', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/sets', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
         ];
         return view('dashboard.products.specs.sets.create', $data);
@@ -100,9 +101,19 @@ class SpecSetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) : Application|Factory|View|RedirectResponse
     {
-        //
+        if (!User::thisUserHasPermission($this->method, "specs"))
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
+
+        $data = [
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/sets', UserHelper::getType()->code),
+            'navbar' => DashboardComponents::Navbar(),
+        ];
+        return view('dashboard.products.specs.sets.edit', $data);
     }
 
     /**

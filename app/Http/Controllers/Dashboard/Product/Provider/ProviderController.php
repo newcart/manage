@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Provider;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -45,7 +46,7 @@ class ProviderController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/providers', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/providers', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable( $this->class. "s", Variables::ProviderColumns())
         ];
@@ -66,7 +67,7 @@ class ProviderController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/providers', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/providers', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar()
         ];
         return view('dashboard.products.providers.create', $data);
@@ -98,11 +99,21 @@ class ProviderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function edit($id)
+    public function edit($id): Application|Factory|View|RedirectResponse
     {
-        //
+        if (!User::thisUserHasPermission($this->method, $this->class))
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
+
+        $data = [
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/providers', UserHelper::getType()->code),
+            'navbar' => DashboardComponents::Navbar()
+        ];
+        return view('dashboard.products.providers.edit', $data);
     }
 
     /**

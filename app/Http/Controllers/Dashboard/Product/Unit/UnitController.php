@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Unit;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -46,7 +47,7 @@ class UnitController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/unit', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/unit', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable($this->class . "s", Variables::UnitColumns())
         ];
@@ -68,7 +69,7 @@ class UnitController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/unit', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/unit', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar()
         ];
 
@@ -103,9 +104,20 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) : Application|Factory|View|RedirectResponse
     {
-        //
+        if (!User::thisUserHasPermission($this->method, $this->class))
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
+
+        $data = [
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/unit', UserHelper::getType()->code),
+            'navbar' => DashboardComponents::Navbar()
+        ];
+
+        return view('dashboard.products.units.edit', $data);
     }
 
     /**

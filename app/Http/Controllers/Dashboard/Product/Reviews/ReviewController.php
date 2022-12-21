@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Reviews;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -45,7 +46,7 @@ class ReviewController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/reviews', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/reviews', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable( $this->class. "s", Variables::ProductReviewsColumns())
         ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\Spec\SpecGroup;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -46,7 +47,7 @@ class SpecGroupController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/groups', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/groups', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'specGroup' => DatatableComponent::createDatatable( "specs/groups", Variables::SpecGroupColumns()),
             'specSet' => DatatableComponent::createDatatable("specs/sets", Variables::SpecSetColumns())
@@ -68,7 +69,7 @@ class SpecGroupController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/groups', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/groups', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar()
         ];
         return view('dashboard.products.specs.group.create', $data);
@@ -111,7 +112,7 @@ class SpecGroupController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/groups', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/specs/groups', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar()
         ];
         return view('dashboard.products.specs.group.edit', $data);

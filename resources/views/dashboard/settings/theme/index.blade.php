@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Genel Site Ayarları - Akıllıphone')
+@section('title', 'Tema Ayarları - Akıllıphone')
 
 @section('content')
-    <h1>Yeni Ürün ekle</h1>
+    <h1>Tema Ayarları</h1>
     <form action="{{ route('settings.theme.store') }}" method="POST">
+        @method('PATCH')
         @csrf
         <div>
             <div class="line">

@@ -44,9 +44,8 @@ class CargoController extends Controller
         $data = [
             'sidebar' => DashboardComponents::SideBar('dashboard/cargo', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
-            'datatable' => DatatableComponent::createDatatable( $this->class. "s", Variables::UserColumns())
         ];
-        return view('dashboard.users.index', $data);
+        return view('dashboard.cargo.index', $data);
     }
 
     /**
@@ -54,9 +53,19 @@ class CargoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() : View|Factory|RedirectResponse|Application
     {
-        //
+        if (!User::thisUserHasPermission($this->method, $this->class))
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
+
+        $data = [
+            'sidebar' => DashboardComponents::SideBar('dashboard/cargo', UserHelper::getType()->code),
+            'navbar' => DashboardComponents::Navbar(),
+        ];
+        return view('dashboard.cargo.create', $data);
     }
 
     /**
@@ -87,10 +96,21 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) : View|Factory|RedirectResponse|Application
     {
-        //
+        if (!User::thisUserHasPermission($this->method, $this->class))
+        {
+            notify()->warning('Bu işlemi yapmaya yetkiniz bulunmamaktadır.', 'Yetki Hatası');
+            return redirect()->back();
+        }
+
+        $data = [
+            'sidebar' => DashboardComponents::SideBar('dashboard/cargo', UserHelper::getType()->code),
+            'navbar' => DashboardComponents::Navbar(),
+        ];
+        return view('dashboard.cargo.edit', $data);
     }
+
 
     /**
      * Update the specified resource in storage.

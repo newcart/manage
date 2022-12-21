@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Product\PriceWarningRequests;
 use App\Helpers\Components\DashboardComponents;
 use App\Helpers\Components\DatatableComponent;
 use App\Helpers\General;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Product\Utils\Variables;
 use App\Models\User\User;
@@ -45,7 +46,7 @@ class PriceWarningRequestController extends Controller
         }
 
         $data = [
-            'sidebar' => DashboardComponents::SideBar('dashboard/products/price-warning-requests', 'admin'),
+            'sidebar' => DashboardComponents::SideBar('dashboard/products/price-warning-requests', UserHelper::getType()->code),
             'navbar' => DashboardComponents::Navbar(),
             'datatable' => DatatableComponent::createDatatable( $this->class. "s", Variables::PriceWarningRequestsColumns())
         ];
