@@ -7,7 +7,7 @@ Route::group(['prefix' => 'shipment-settings'], function () {
 
     Route::get('/', [ShipmentSettingsController::class, 'index'])->name('shipment-settings');
 
-    Route::group(['name' => 'shipment-settings.'], function () {
+    Route::name('shipment-settings.')->group(function () {
 
         Route::get('/create', [ShipmentSettingsController::class, 'create'])->name('create');
         Route::post('/store', [ShipmentSettingsController::class, 'store'])->name('store');

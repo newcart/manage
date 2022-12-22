@@ -3,8 +3,8 @@
 @section('title', 'Genel Site Ayarları - Akıllıphone')
 
 @section('content')
-    <h1>Yeni Ürün ekle</h1>
-    <form action="{{ route('settings.store') }}" method="POST">
+    <h1>Genel Site Ayarları</h1>
+    <form action="{{ route('dashboard.settings.store') }}" method="POST">
         @csrf
         <div>
             <div class="line">

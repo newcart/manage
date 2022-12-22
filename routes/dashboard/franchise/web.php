@@ -7,7 +7,7 @@ Route::group(['prefix' => 'franchise'], function () {
 
     Route::get('/', [FranchiseController::class, 'index'])->name('franchise');
 
-    Route::group(['name' => 'franchise.'], function () {
+    Route::name('franchise.')->group(function () {
 
         Route::get('/create', [FranchiseController::class, 'create'])->name('create');
         Route::post('/store', [FranchiseController::class, 'store'])->name('store');

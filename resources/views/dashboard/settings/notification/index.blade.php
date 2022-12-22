@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Bildirim Gönderme Ayarları</h1>
-    <form action="{{ route('settings.push_notification.update', $notification) }}" method="POST">
+    <form action="{{ route('settings.notification.update', $notification) }}" method="POST">
         @csrf
         <div>
             <div class="line">

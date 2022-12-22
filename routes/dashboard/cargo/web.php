@@ -7,7 +7,7 @@ Route::group(['prefix' => 'cargo'], function () {
 
     Route::get('/', [CargoController::class, 'index'])->name('cargo');
 
-    Route::group(['name' => 'cargo.'], function () {
+    Route::name('cargo.')->group(function () {
 
         Route::get('/create', [CargoController::class, 'create'])->name('create');
         Route::post('/store', [CargoController::class, 'store'])->name('store');

@@ -7,7 +7,8 @@ use App\Http\Controllers\Auth\AuthController;
 Route::middleware(['guest'])->group(function () {
 
     Route::get('/', function() {
-        return view('auth.login');
+        if (Auth::user()) return redirect()->route('dashboard');
+        else return view('auth.login');
     })->name('login');
 
     Route::post('/', [AuthController::class, 'login'])->name('login.post');

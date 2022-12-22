@@ -4,9 +4,9 @@ use App\Http\Controllers\Dashboard\DatatableController;
 use App\Http\Controllers\Dashboard\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'orders'], function () {
+Route::group(['prefix' => 'orders'], static function () {
     Route::get('/', [OrderController::class, 'index'])->name('orders');
-    Route::name('orders.')->group(function () {
+    Route::name('orders.')->group(static function () {
 
         Route::get('/create', [OrderController::class, 'create'])->name('new');
         Route::post('/create', [OrderController::class, 'store'])->name('create');

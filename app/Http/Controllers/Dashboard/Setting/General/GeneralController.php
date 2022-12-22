@@ -26,7 +26,7 @@ class GeneralController extends Controller
      */
     public function __construct()
     {
-        $this->class = General::getClass();
+        $this->class = "setting";
         $this->method = General::getMethod();
     }
     /**

@@ -7,7 +7,7 @@ Route::group(['prefix' => 'content'], function () {
 
     Route::get('/', [ContentControler::class, 'index'])->name('content');
 
-    Route::group(['name' => 'content.'], function () {
+    Route::name('content.')->group(function () {
 
         Route::get('/create', [ContentControler::class, 'create'])->name('create');
         Route::post('/store', [ContentControler::class, 'store'])->name('store');

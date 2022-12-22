@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Tema Ayarları</h1>
-    <form action="{{ route('settings.theme.store') }}" method="POST">
+    <form action="{{ route('dashboard.settings.theme.store') }}" method="POST">
         @method('PATCH')
         @csrf
         <div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="logo" class="form-label">Logo</label>
-                    <input type="image" class="form-control" name="logo">
+                    <input type="file" class="form-control" name="logo">
                 </div>
                 <div class="mb-3">
                     <label for="top_bar_content" class="form-label">Top Bar İçeriği</label>

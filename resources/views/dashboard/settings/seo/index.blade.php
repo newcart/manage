@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>SEO Ayarları</h1>
-    <form action="{{ route('settings.seo.store') }}" method="POST">
+    <form action="{{ route('dashboard.settings.seo.store') }}" method="POST">
         @csrf
         <div>
             <div class="line">

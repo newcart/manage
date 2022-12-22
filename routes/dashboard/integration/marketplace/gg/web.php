@@ -3,11 +3,11 @@
 use App\Http\Controllers\Dashboard\Integration\Marketplace\GG\GittiGidiyorController;
 use App\Http\Controllers\Dashboard\DatatableController;
 
-Route::group(['prefix' => 'shipment-settings'], function () {
+Route::group(['prefix' => 'gittigidiyor'], function () {
 
-    Route::get('/', [GittiGidiyorController::class, 'index'])->name('shipment-settings');
+    Route::get('/', [GittiGidiyorController::class, 'index'])->name('gittigidiyor');
 
-    Route::group(['name' => 'shipment-settings.'], function () {
+    Route::name('gittigidiyor.')->group(function () {
 
         Route::get('/create', [GittiGidiyorController::class, 'create'])->name('create');
         Route::post('/store', [GittiGidiyorController::class, 'store'])->name('store');

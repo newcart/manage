@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>E-Posta Hesabı Düzenle</h1>
-    <form action="{{ route('settings.email.add-email.update' , $email) }}" method="POST">
+    <form action="{{ route('settings.email.update' , $email) }}" method="POST">
         @csrf
         <div>
             <div class="line">

@@ -1,11 +1,18 @@
 <?php
 
-use App\Http\Controllers\Dashboard\Franchise\FranchiseController;
 use App\Http\Controllers\Dashboard\DatatableController;
 
 Route::group(['prefix' => 'integration'], function () {
 
-    Route::get('/', [FranchiseController::class, 'index'])->name('franchise');
+    Route::get('/', function () {
+        return redirect()->back();
+    });
 
+
+    Route::name('integration.')->group(function () {
+
+        include "marketplace/web.php";
+
+    });
 
 });
