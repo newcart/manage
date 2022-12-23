@@ -24,7 +24,7 @@ class AuthController extends Controller
             notify()->success('Giriş Yapıldı!', 'İşlem Başarılı');
             $user_type = DB::table('user_types')->where('type_id', Auth::user()->user_type_id)->first();
             $request->session()->put('user_type', $user_type);
-            return redirect()->route('panel');
+            return redirect()->route('dashboard');
         } else {
             notify()->error('Giriş Yapılamadı! Yanlış e-posta veya şifre.', 'İşlem Başarısız.');
             return redirect()->back();
